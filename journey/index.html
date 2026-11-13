@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Beijing | A 3D walk along the Central Axis</title>
+<meta name="description" content="A scroll-driven walk along Beijing's Central Axis with twelve anime teachers. Chinese PBL by A. Antony Bescki, RA2611026010076.">
+<meta name="theme-color" content="#0C0C0C">
+<meta property="og:title" content="Beijing | A 3D walk along the Central Axis">
+<meta property="og:type" content="website">
+<!-- DEPLOY STEP: set og:url and og:image to the live absolute URLs -->
+<meta property="og:image" content="assets/hero-poster.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230C0C0C'/%3E%3Cpath d='M32 8v48' stroke='%23BBCCD7' stroke-width='6'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23BBCCD7'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="assets/hero-poster.jpg" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500;900&family=Noto+Sans+SC:wght@500;700&display=swap">
+<style>:root { --bg: #0C0C0C; --ink: #D7E2EA; --ink2: #9AA6B1; --line: rgba(215, 226, 234, .22); --k: Kanit, "Noto Sans SC", system-ui, sans-serif; --ease: cubic-bezier(.25, .1, .25, 1); }
+* { box-sizing: border-box; margin: 0; padding: 0; } html, body { background: var(--bg); } html { scroll-behavior: smooth; }
+body { font-family: var(--k); color: var(--ink); overflow-x: clip; -webkit-font-smoothing: antialiased; }
+img { display: block; } a { color: inherit; text-decoration: none; } :focus-visible { outline: 3px solid #fff; outline-offset: 4px; border-radius: 6px; } main:focus { outline: none; }
+.skip { position: fixed; left: 12px; top: -60px; z-index: 99; background: #fff; color: #0C0C0C; padding: 10px 16px; border-radius: 8px; } .skip:focus { top: 12px; }
+.hero-heading { background: linear-gradient(180deg, #646973 0%, #BBCCD7 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; font-weight: 900; text-transform: uppercase; letter-spacing: -.02em; line-height: 1; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 14px 40px; border-radius: 99px; color: #fff; font: 500 15px var(--k); text-transform: uppercase; letter-spacing: .14em; background: linear-gradient(123deg, #18011F 7%, #B600A8 37%, #7621B0 72%, #BE4C00 100%); box-shadow: 0 4px 4px rgba(181, 1, 167, .25), 4px 4px 12px #7721B1 inset; outline: 2px solid #fff; outline-offset: -3px; will-change: transform; } .btn:focus-visible { outline-offset: 2px; }
+.ghost { display: inline-flex; align-items: center; min-height: 48px; padding: 12px 34px; border-radius: 99px; border: 2px solid var(--ink); color: var(--ink); font: 500 14px var(--k); text-transform: uppercase; letter-spacing: .16em; transition: background .2s; } .ghost:hover { background: rgba(215, 226, 234, .1); }
+.r { opacity: 0; transform: translateY(40px); transition: opacity .8s var(--ease), transform .8s var(--ease); } .r.on { opacity: 1; transform: none; }
+
+/* hero: the video plays as you scroll */
+.hero { height: 340vh; position: relative; } .stage { position: sticky; top: 0; height: 100svh; overflow: hidden; display: flex; flex-direction: column; background: #1a1410; }
+.stage > .poster, .stage > .vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; } .vid { opacity: 0; transition: opacity .5s; } .vid.ready { opacity: 1; }
+.scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12, 12, 12, .6), rgba(12, 12, 12, .25) 40%, rgba(12, 12, 12, .5) 100%), linear-gradient(90deg, rgba(12, 12, 12, .5), transparent 60%); pointer-events: none; }
+.nav { position: relative; z-index: 3; display: flex; justify-content: space-between; padding: 24px clamp(20px, 4vw, 40px) 0; } .nav a { color: #D7E2EA; font: 500 clamp(14px, 1.6vw, 22px) var(--k); text-transform: uppercase; letter-spacing: .08em; padding: 10px 0; transition: opacity .2s; } .nav a:hover { opacity: .7; }
+.hero h1 { position: relative; z-index: 3; width: 100%; white-space: nowrap; font-size: clamp(60px, 17.5vw, 330px); margin-top: clamp(0px, 2vw, 10px); text-align: center; will-change: transform, opacity; transform: translateY(calc(var(--p, 0) * -18vh)) scale(calc(1 - var(--p, 0) * .12)); opacity: calc(1 - var(--p, 0) * 4.2); }
+.band { position: absolute; left: clamp(20px, 5vw, 80px); bottom: 24vh; z-index: 3; max-width: min(520px, 80vw); opacity: 0; transform: translateY(30px); transition: opacity .6s var(--ease), transform .6s var(--ease); } .band.on { opacity: 1; transform: none; }
+.band b { display: block; font: 900 clamp(40px, 7vw, 96px)/1 var(--k); text-transform: uppercase; color: #fff; letter-spacing: -.02em; text-shadow: 0 2px 30px rgba(0, 0, 0, .6); } .band span { display: block; margin-top: 12px; font: 300 clamp(16px, 1.8vw, 24px) var(--k); color: #D7E2EA; text-shadow: 0 1px 12px rgba(0, 0, 0, .7); }
+.bar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; padding: 0 clamp(20px, 4vw, 40px) clamp(24px, 4vw, 40px); } .lede { max-width: clamp(160px, 24vw, 280px); font: 300 clamp(12px, 1.4vw, 22px)/1.25 var(--k); text-transform: uppercase; letter-spacing: .04em; color: #D7E2EA; text-shadow: 0 1px 10px rgba(0, 0, 0, .7); }
+.load { position: absolute; z-index: 4; right: clamp(20px, 4vw, 40px); top: 90px; display: flex; align-items: center; gap: 10px; font: 500 12px var(--k); letter-spacing: .12em; color: #D7E2EA; transition: opacity .4s; } .load i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(215, 226, 234, .3); border-top-color: #D7E2EA; animation: spin 1s linear infinite; } .load.done { opacity: 0; pointer-events: none; } @keyframes spin { to { transform: rotate(360deg); } }
+.hero.static { height: 100svh; } .hero.static .band, .hero.static .load { display: none; } .hero.static h1 { transform: none; opacity: 1; }
+
+/* marquee: two rows that slide with the scroll */
+.marquee { padding: clamp(96px, 12vw, 160px) 0 40px; overflow: hidden; display: grid; gap: 12px; } .row { display: flex; gap: 12px; width: max-content; will-change: transform; } .row img { width: 420px; height: 270px; object-fit: cover; border-radius: 16px; flex: none; }
+
+/* about */
+.about { position: relative; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: clamp(40px, 5vw, 64px); padding: 80px clamp(20px, 3vw, 40px); text-align: center; }
+.about h2 { font-size: clamp(48px, 12vw, 160px); } .split { max-width: 560px; font: 500 clamp(16px, 2vw, 21.6px)/1.7 var(--k); color: var(--ink); } .split span { opacity: .2; transition: opacity .15s linear; }
+.deco { position: absolute; width: clamp(100px, 16vw, 230px); height: auto; filter: drop-shadow(0 18px 24px rgba(0, 0, 0, .55)); opacity: 0; transition: opacity .9s var(--ease), transform .9s var(--ease); } .deco.on { opacity: 1; transform: none; }
+.d1 { top: 4%; left: 3%; transform: translateX(-80px); } .d2 { bottom: 6%; left: 6%; transform: translateX(-80px); } .d3 { top: 4%; right: 3%; transform: translateX(80px); } .d4 { bottom: 6%; right: 6%; transform: translateX(80px); }
+
+/* chapters: white section with the list */
+.services { background: #fff; color: #0C0C0C; border-radius: 40px 40px 0 0; padding: clamp(80px, 10vw, 128px) clamp(20px, 3vw, 40px); } .services h2 { text-align: center; font: 900 clamp(48px, 12vw, 160px)/1 var(--k); text-transform: uppercase; margin-bottom: clamp(56px, 8vw, 112px); letter-spacing: -.02em; }
+.list { max-width: 1024px; margin: 0 auto; } .svc { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(16px, 3vw, 48px); align-items: center; padding: clamp(24px, 3vw, 40px) 0; border-top: 1px solid rgba(12, 12, 12, .15); transition: padding-left .3s var(--ease), background .3s; } .svc:last-child { border-bottom: 1px solid rgba(12, 12, 12, .15); } .svc:hover { padding-left: 14px; background: rgba(12, 12, 12, .03); }
+.num { font: 900 clamp(48px, 10vw, 140px)/1 var(--k); } .txt b { display: block; font: 500 clamp(17px, 2.2vw, 33px) var(--k); text-transform: uppercase; } .txt span { display: block; margin-top: 8px; max-width: 42rem; font: 300 clamp(14px, 1.6vw, 20px)/1.6 var(--k); opacity: .7; }
+.tch { display: grid; justify-items: center; gap: 4px; } .tch img { width: clamp(56px, 7vw, 96px); height: clamp(56px, 7vw, 96px); border-radius: 50%; object-fit: cover; object-position: 50% 8%; background: #E6EBF0; transition: transform .35s var(--ease); } .svc:hover .tch img { transform: scale(1.12) rotate(-4deg); } .tch i { font: 500 12px var(--k); font-style: normal; text-transform: uppercase; letter-spacing: .12em; opacity: .65; }
+
+/* highlights: cards stack as you scroll */
+.projects { background: var(--bg); border-radius: 40px 40px 0 0; margin-top: -40px; position: relative; z-index: 10; padding: clamp(80px, 10vw, 128px) clamp(12px, 2vw, 32px) 80px; } .projects h2 { text-align: center; font-size: clamp(48px, 12vw, 160px); margin-bottom: clamp(40px, 6vw, 80px); }
+.stack { max-width: 1280px; margin: 0 auto; } .stackwrap { height: 85vh; } .pcard { position: sticky; top: 96px; border: 2px solid var(--ink); border-radius: 60px; background: var(--bg); padding: clamp(16px, 2vw, 32px); will-change: transform; transform-origin: 50% 0; transform: scale(var(--s, 1)); }
+.ptop { display: flex; align-items: center; gap: clamp(12px, 2vw, 32px); margin-bottom: clamp(14px, 2vw, 28px); } .ptop .num { color: var(--ink); } .pmeta { flex: 1; min-width: 0; } .pmeta small { font: 500 12px var(--k); letter-spacing: .16em; text-transform: uppercase; color: var(--ink2); } .pmeta h3 { font: 500 clamp(20px, 3vw, 44px)/1.1 var(--k); text-transform: uppercase; } .pmeta p { font: 300 clamp(13px, 1.4vw, 18px) var(--k); color: var(--ink2); margin-top: 4px; }
+.pgrid { display: grid; grid-template-columns: 40% 1fr; gap: clamp(10px, 1.4vw, 20px); } .c1 { display: grid; gap: clamp(10px, 1.4vw, 20px); } .im { overflow: hidden; border-radius: 60px; } .im img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); } .pcard:hover .im img { transform: scale(1.05); }
+.i1 { height: clamp(110px, 15vw, 220px); } .i2 { height: clamp(140px, 20vw, 320px); } .c2 { height: calc(clamp(110px, 15vw, 220px) + clamp(140px, 20vw, 320px) + clamp(10px, 1.4vw, 20px)); }
+
+.contact { position: relative; padding: clamp(100px, 14vw, 200px) 20px; text-align: center; overflow: hidden; } .cbg { position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg), rgba(12, 12, 12, .55) 40%, var(--bg)), url(assets/hero-ending.jpg) center / cover; opacity: .7; } .cwrap { position: relative; display: grid; gap: 24px; justify-items: center; }
+.contact .small { font: 500 13px var(--k); letter-spacing: .24em; text-transform: uppercase; color: var(--ink2); } .contact h2 { font-size: clamp(44px, 10vw, 140px); } .lede2 { max-width: 46ch; font: 300 clamp(16px, 1.8vw, 21px)/1.7 var(--k); color: var(--ink); } .ctas { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 8px; }
+.by { display: grid; margin-top: 24px; } .by b { font: 900 22px var(--k); letter-spacing: .08em; color: #fff; } .by span { font: 300 14px var(--k); letter-spacing: .12em; color: var(--ink2); }
+footer { padding: 36px 20px 60px; text-align: center; background: #080808; color: var(--ink2); } footer p { max-width: 70ch; margin: 0 auto; font: 300 13px/1.7 var(--k); }
+
+@media (max-width: 767px) { .row img { width: 260px; height: 170px; } .svc { grid-template-columns: auto 1fr; } .tch { display: none; } .pcard { border-radius: 34px; top: 76px; } .im { border-radius: 30px; } .ptop { flex-wrap: wrap; } .ghost { padding: 10px 22px; } .d1, .d3 { top: 1%; } .band { bottom: 20vh; } .stackwrap { height: 78vh; } .nav a { font-size: 13px; } }
+@media (pointer: coarse) { .btn, .ghost { min-height: 48px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } .r, .deco { opacity: 1 !important; transform: none !important; } .split span { opacity: 1 !important; } .hero h1 { transform: none; opacity: 1; } }
+@media (max-width: 767px) { .ptop .num { font-size: 56px; } .pmeta { flex: 1 1 calc(100% - 90px); } .pmeta small { letter-spacing: .08em; } .ghost { order: 3; width: 100%; justify-content: center; } .pgrid { grid-template-columns: 42% 1fr; } }
+.scrim { background: linear-gradient(180deg, rgba(12, 12, 12, .7), rgba(12, 12, 12, .3) 40%, rgba(12, 12, 12, .55) 100%), linear-gradient(90deg, rgba(12, 12, 12, .5), transparent 60%); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<main id="main" tabindex="-1">
+
+<section class="hero" id="top" aria-label="Beijing">
+  <div class="stage">
+    <img class="poster" src="assets/hero-poster.jpg" alt="" fetchpriority="high">
+    <video class="vid" muted playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+    <div class="scrim" aria-hidden="true"></div>
+    <div class="load" aria-hidden="true"><i></i><span>0%</span></div>
+    <nav class="nav" aria-label="Main"><a href="#about">About</a><a href="#chapters">Chapters</a><a href="#projects">Projects</a><a href="#contact">Download</a></nav>
+    <h1 class="hero-heading">Beijing</h1>
+    <div class="band b1" aria-hidden="true"><b>One road.</b><span>A straight line runs through the middle of the city.</span></div>
+    <div class="band b2" aria-hidden="true"><b>Twelve teachers.</b><span>Every stop has its own anime guide.</span></div>
+    <div class="bar"><p class="lede">a guided walk along the central axis of china's northern capital</p><a class="btn magnet" href="Exploring-Beijing-Travel-Guide.pdf" download>Download PDF</a></div>
+  </div>
+</section>
+
+<section class="marquee" aria-label="Photos of Beijing">
+  <div class="row" data-dir="1"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"><img src="../beijing/assets/02-forbidden-city.webp" alt="The Forbidden City at dusk" loading="lazy"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="The Temple of Heaven" loading="lazy"><img src="../beijing/assets/04-hutong.webp" alt="A hutong alley with red lanterns" loading="lazy"><img src="../beijing/assets/05-food.webp" alt="Peking duck being carved" loading="lazy"><img src="../beijing/assets/06-modern.webp" alt="The Beijing skyline at blue hour" loading="lazy"><img src="../beijing/assets/07-autumn-park.webp" alt="Autumn hills and a pagoda" loading="lazy"><img src="../beijing/assets/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" loading="lazy"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"><img src="../beijing/assets/02-forbidden-city.webp" alt="The Forbidden City at dusk" loading="lazy"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="The Temple of Heaven" loading="lazy"><img src="../beijing/assets/04-hutong.webp" alt="A hutong alley with red lanterns" loading="lazy"><img src="../beijing/assets/05-food.webp" alt="Peking duck being carved" loading="lazy"><img src="../beijing/assets/06-modern.webp" alt="The Beijing skyline at blue hour" loading="lazy"><img src="../beijing/assets/07-autumn-park.webp" alt="Autumn hills and a pagoda" loading="lazy"><img src="../beijing/assets/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" loading="lazy"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"><img src="../beijing/assets/02-forbidden-city.webp" alt="The Forbidden City at dusk" loading="lazy"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="The Temple of Heaven" loading="lazy"><img src="../beijing/assets/04-hutong.webp" alt="A hutong alley with red lanterns" loading="lazy"><img src="../beijing/assets/05-food.webp" alt="Peking duck being carved" loading="lazy"><img src="../beijing/assets/06-modern.webp" alt="The Beijing skyline at blue hour" loading="lazy"><img src="../beijing/assets/07-autumn-park.webp" alt="Autumn hills and a pagoda" loading="lazy"><img src="../beijing/assets/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" loading="lazy"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"><img src="../beijing/assets/02-forbidden-city.webp" alt="The Forbidden City at dusk" loading="lazy"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="The Temple of Heaven" loading="lazy"><img src="../beijing/assets/04-hutong.webp" alt="A hutong alley with red lanterns" loading="lazy"><img src="../beijing/assets/05-food.webp" alt="Peking duck being carved" loading="lazy"><img src="../beijing/assets/06-modern.webp" alt="The Beijing skyline at blue hour" loading="lazy"><img src="../beijing/assets/07-autumn-park.webp" alt="Autumn hills and a pagoda" loading="lazy"><img src="../beijing/assets/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" loading="lazy"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"></div>
+  <div class="row" data-dir="-1"><img src="../beijing/assets/04-hutong.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/05-food.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/06-modern.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/07-autumn-park.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/08-summer-palace.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/01-hero.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/02-forbidden-city.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/04-hutong.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/05-food.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/06-modern.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/07-autumn-park.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/08-summer-palace.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/01-hero.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/02-forbidden-city.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/04-hutong.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/05-food.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/06-modern.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/07-autumn-park.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/08-summer-palace.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/01-hero.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/02-forbidden-city.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/04-hutong.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/05-food.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/06-modern.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/07-autumn-park.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/08-summer-palace.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/01-hero.webp" alt="" loading="lazy" aria-hidden="true"></div>
+</section>
+
+<section class="about" id="about">
+  <img class="deco d1" src="../beijing/assets/teachers/goku.webp" alt="" loading="lazy"><img class="deco d2" src="../beijing/assets/teachers/luffy.webp" alt="" loading="lazy"><img class="deco d3" src="../beijing/assets/teachers/naruto.webp" alt="" loading="lazy"><img class="deco d4" src="../beijing/assets/teachers/anya.webp" alt="" loading="lazy">
+  <h2 class="hero-heading r">About this guide</h2>
+  <p class="split" id="split" data-text="This is a Chinese project-based learning guide about Beijing. It walks the Central Axis, a straight road that runs north to south through the middle of the city, and every stop is taught by a different anime teacher. Read the chapters, learn a few phrases, and plan three perfect days.">This is a Chinese project-based learning guide about Beijing. It walks the Central Axis, a straight road that runs north to south through the middle of the city, and every stop is taught by a different anime teacher. Read the chapters, learn a few phrases, and plan three perfect days.</p>
+  <a class="btn magnet r" href="#chapters">Start the walk</a>
+</section>
+
+<section class="services" id="chapters">
+  <h2 class="r">Chapters</h2>
+  <div class="list"><a class="svc r" href="../beijing/#intro"><span class="num">01</span><span class="txt"><b>Welcome</b><span>The northern capital and the road that runs through it.</span></span><span class="tch"><img src="../beijing/assets/teachers/goku.webp" alt="" loading="lazy"><i>Goku</i></span></a><a class="svc r" href="../beijing/#wall"><span class="num">02</span><span class="txt"><b>Great Wall</b><span>The wall north of Beijing, rebuilt by the Ming dynasty. Pick your section.</span></span><span class="tch"><img src="../beijing/assets/teachers/naruto.webp" alt="" loading="lazy"><i>Naruto</i></span></a><a class="svc r" href="../beijing/#forbidden"><span class="num">03</span><span class="txt"><b>Forbidden City</b><span>Twenty-four emperors, 980 buildings and one straight axis.</span></span><span class="tch"><img src="../beijing/assets/teachers/thorfinn.webp" alt="" loading="lazy"><i>Thorfinn</i></span></a><a class="svc r" href="../beijing/#temple"><span class="num">04</span><span class="txt"><b>Temple of Heaven</b><span>A round hall built without a single nail, plus the Summer Palace.</span></span><span class="tch"><img src="../beijing/assets/teachers/gojo.webp" alt="" loading="lazy"><i>Gojo</i></span></a><a class="svc r" href="../beijing/#hutong"><span class="num">05</span><span class="txt"><b>Hutongs</b><span>Grey brick lanes, courtyard homes and bicycles at dusk.</span></span><span class="tch"><img src="../beijing/assets/teachers/aizen.webp" alt="" loading="lazy"><i>Aizen</i></span></a><a class="svc r" href="../beijing/#food"><span class="num">06</span><span class="txt"><b>Food</b><span>Peking duck, noodles, dumplings and hotpot.</span></span><span class="tch"><img src="../beijing/assets/teachers/luffy.webp" alt="" loading="lazy"><i>Luffy</i></span></a><a class="svc r" href="../beijing/#modern"><span class="num">07</span><span class="txt"><b>Modern Beijing</b><span>Towers, a Bird&#x27;s Nest and an airport shaped like a starfish.</span></span><span class="tch"><img src="../beijing/assets/teachers/doraemon.webp" alt="" loading="lazy"><i>Doraemon</i></span></a><a class="svc r" href="../beijing/#transit"><span class="num">08</span><span class="txt"><b>Transit</b><span>Subway, bicycles and trains that reach Shanghai in four and a half hours.</span></span><span class="tch"><img src="../beijing/assets/teachers/guts.webp" alt="" loading="lazy"><i>Guts</i></span></a><a class="svc r" href="../beijing/#parks"><span class="num">09</span><span class="txt"><b>Parks and Hills</b><span>Fragrant Hills, Beihai and the Ming Tombs.</span></span><span class="tch"><img src="../beijing/assets/teachers/levi.webp" alt="" loading="lazy"><i>Levi</i></span></a><a class="svc r" href="../beijing/#language"><span class="num">10</span><span class="txt"><b>Language</b><span>Twelve survival phrases and the five tones of Mandarin.</span></span><span class="tch"><img src="../beijing/assets/teachers/anya.webp" alt="" loading="lazy"><i>Anya</i></span></a><a class="svc r" href="../beijing/#seasons"><span class="num">11</span><span class="txt"><b>Seasons and Festivals</b><span>When to go, and which festival to plan around.</span></span><span class="tch"><img src="../beijing/assets/teachers/usagi.webp" alt="" loading="lazy"><i>Usagi</i></span></a><a class="svc r" href="../beijing/#itinerary"><span class="num">12</span><span class="txt"><b>Three Days</b><span>A sample itinerary and your final checklist.</span></span><span class="tch"><img src="../beijing/assets/teachers/totoro.webp" alt="" loading="lazy"><i>Totoro</i></span></a></div>
+</section>
+
+<section class="projects" id="projects">
+  <h2 class="hero-heading r">Highlights</h2>
+  <div class="stack"><div class="stackwrap" data-i="0"><article class="pcard" style="top:0px"><div class="ptop"><span class="num">01</span><div class="pmeta"><small>Chapters 02 to 04</small><h3>Walls and palaces</h3><p>Great Wall, Forbidden City, Temple of Heaven</p></div><a class="ghost" href="../beijing/#wall">Open chapter</a></div><div class="pgrid"><div class="c1"><div class="im i1"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"></div><div class="im i2"><img src="../beijing/assets/02-forbidden-city.webp" alt="The Forbidden City at dusk" loading="lazy"></div></div><div class="c2 im"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="The Temple of Heaven" loading="lazy"></div></div></article></div><div class="stackwrap" data-i="1"><article class="pcard" style="top:28px"><div class="ptop"><span class="num">02</span><div class="pmeta"><small>Chapters 05, 09, 11</small><h3>Lanes and lakes</h3><p>Hutongs, parks and seasons</p></div><a class="ghost" href="../beijing/#hutong">Open chapter</a></div><div class="pgrid"><div class="c1"><div class="im i1"><img src="../beijing/assets/04-hutong.webp" alt="A hutong alley with red lanterns" loading="lazy"></div><div class="im i2"><img src="../beijing/assets/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" loading="lazy"></div></div><div class="c2 im"><img src="../beijing/assets/07-autumn-park.webp" alt="Autumn hills and a pagoda" loading="lazy"></div></div></article></div><div class="stackwrap" data-i="2"><article class="pcard" style="top:56px"><div class="ptop"><span class="num">03</span><div class="pmeta"><small>Chapters 06 to 08</small><h3>Flavour and future</h3><p>Food, modern Beijing and transit</p></div><a class="ghost" href="../beijing/#food">Open chapter</a></div><div class="pgrid"><div class="c1"><div class="im i1"><img src="../beijing/assets/05-food.webp" alt="Peking duck being carved" loading="lazy"></div><div class="im i2"><img src="../beijing/assets/06-modern.webp" alt="The Beijing skyline at blue hour" loading="lazy"></div></div><div class="c2 im"><img src="../beijing/assets/04-hutong.webp" alt="A hutong alley with red lanterns" loading="lazy"></div></div></article></div></div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="cbg" aria-hidden="true"></div>
+  <div class="cwrap r"><p class="small">Chinese project-based learning</p><h2 class="hero-heading">Take it with you</h2><p class="lede2">The full guide is a 14-page PDF. The chapters above open the whole illustrated walk, one teacher at a time.</p>
+  <div class="ctas"><a class="btn magnet" href="Exploring-Beijing-Travel-Guide.pdf" download>Download the PDF guide</a><a class="ghost" href="../beijing/">Open the full guide</a></div>
+  <div class="by"><b>A. ANTONY BESCKI</b><span>Reg. No. RA2611026010076</span></div></div>
+</section>
+</main>
+<footer><p>Photos and the hero video were made with Google Flow for this school project. Character artwork belongs to its original creators and studios and appears here only for non-commercial study.</p></footer>
+<script>(function () {
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+  var hero = document.querySelector('.hero'), vid = document.querySelector('.vid'), load = document.querySelector('.load'), bands = document.querySelectorAll('.band');
+
+  /* the five static-hero gates: phones and small screens, touch, reduced motion, data saver, slow connection. Kept live. */
+  var mqs = [matchMedia('(max-width: 767px)'), matchMedia('(pointer: coarse)'), matchMedia('(prefers-reduced-motion: reduce)')];
+  function wantsStatic() { var c = navigator.connection || {}; return mqs.some(function (m) { return m.matches; }) || c.saveData || /2g/.test(c.effectiveType || ''); }
+  var started = false, ready = false, dur = 0;
+  function apply() { var s = wantsStatic(); hero.classList.toggle('static', s); if (s) { vid.classList.remove('ready'); } else { start(); if (ready) vid.classList.add('ready'); } }
+  mqs.forEach(function (m) { if (m.addEventListener) m.addEventListener('change', apply); });
+
+  /* fetch the video as a Blob behind an honest loading ring, so every seek is local and instant */
+  function start() {
+    if (started) return; started = true;
+    fetch('assets/hero-scrub.mp4').then(function (r) {
+      var total = +r.headers.get('content-length') || 0, got = 0, chunks = [], rd = r.body && r.body.getReader ? r.body.getReader() : null, txt = load.querySelector('span');
+      if (!rd) return r.blob();
+      return (function pump() { return rd.read().then(function (x) { if (x.done) return new Blob(chunks, { type: 'video/mp4' }); chunks.push(x.value); got += x.value.length; if (total) txt.textContent = Math.round(got / total * 100) + '%'; return pump(); }); })();
+    }).then(function (blob) {
+      vid.src = URL.createObjectURL(blob);
+      vid.addEventListener('loadedmetadata', function () { dur = vid.duration; ready = true; load.classList.add('done'); if (!hero.classList.contains('static')) vid.classList.add('ready'); loop(); }, { once: true });
+      vid.load();
+    }).catch(function () { load.classList.add('done'); });   /* page stays complete over the poster */
+  }
+
+  /* scroll progress drives a lerped time, written only when it changes, and never while a seek is in flight */
+  var cur = 0, last = performance.now(), running = false, lastSet = -1;
+  function prog() { var r = hero.getBoundingClientRect(), span = r.height - innerHeight; return clamp(-r.top / Math.max(1, span), 0, 1); }
+  function loop() { if (running) return; running = true; last = performance.now(); requestAnimationFrame(tick); }
+  function tick(now) {
+    var p = prog(), dt = Math.min(.05, (now - last) / 1000); last = now;
+    hero.style.setProperty('--p', p.toFixed(4));
+    var tgt = p * (dur || 0) * .985;
+    cur += (tgt - cur) * (1 - Math.exp(-dt * 9));
+    if (ready && !hero.classList.contains('static') && !vid.seeking && Math.abs(cur - lastSet) > .012) { vid.currentTime = cur; lastSet = cur; }
+    bands[0].classList.toggle('on', p > .3 && p < .56); bands[1].classList.toggle('on', p > .6 && p < .9);
+    if (Math.abs(tgt - cur) < .003 && !pending) { running = false; return; }
+    requestAnimationFrame(tick);
+  }
+  var pending = false;
+  addEventListener('scroll', function () { if (!reduce) loop(); }, { passive: true });
+  addEventListener('resize', function () { if (!reduce) loop(); });
+  apply();
+
+  /* marquee: two rows that slide opposite ways with the page */
+  var mq = document.querySelector('.marquee'), rows = mq ? mq.querySelectorAll('.row') : [], tick2 = false;
+  function marquee() {
+    tick2 = false; var top = mq.getBoundingClientRect().top + scrollY, off = (scrollY - top + innerHeight) * .3;
+    rows[0].style.transform = 'translateX(' + (off - 200).toFixed(1) + 'px)'; rows[1].style.transform = 'translateX(' + (-(off - 200)).toFixed(1) + 'px)';
+  }
+  if (rows.length) { addEventListener('scroll', function () { if (!tick2) { tick2 = true; requestAnimationFrame(marquee); } }, { passive: true }); marquee(); }
+
+  /* about: every character fades from 20 percent to full as you scroll through the paragraph */
+  var sp = document.getElementById('split');
+  if (sp) {
+    var text = sp.getAttribute('data-text'); sp.textContent = ''; sp.setAttribute('aria-label', text);
+    var chars = text.split('').map(function (ch) { var s = document.createElement('span'); s.textContent = ch; s.setAttribute('aria-hidden', 'true'); sp.appendChild(s); return s; });
+    var t3 = false;
+    var reveal = function () { t3 = false; var r = sp.getBoundingClientRect(), vh = innerHeight, start = r.top - vh * .8, end = r.bottom - vh * .2, p = clamp((0 - start) / Math.max(1, end - start) * -1 * -1, 0, 1); p = clamp((vh * .8 - r.top) / Math.max(1, (vh * .8 - r.top) + (r.bottom - vh * .2)), 0, 1); var n = chars.length; chars.forEach(function (s, i) { var a = i / n, b = (i + 1) / n, k = reduce ? 1 : clamp((p - a) / (b - a || 1), 0, 1); s.style.opacity = (.2 + .8 * k).toFixed(2); }); };
+    addEventListener('scroll', function () { if (!t3) { t3 = true; requestAnimationFrame(reveal); } }, { passive: true }); reveal();
+  }
+
+  /* stacking cards: each one shrinks a little as the next slides over it */
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.stackwrap')), n = cards.length, t4 = false;
+  function stack() { t4 = false; cards.forEach(function (w, i) { var r = w.getBoundingClientRect(), s = clamp(-r.top / Math.max(1, r.height * 1), 0, 1); w.firstChild.style.setProperty('--s', (1 - (n - 1 - i) * .03 * s).toFixed(4)); }); }
+  addEventListener('scroll', function () { if (!t4) { t4 = true; requestAnimationFrame(stack); } }, { passive: true }); stack();
+
+  /* magnetic buttons, mouse only */
+  if (!reduce && matchMedia('(pointer: fine)').matches) {
+    document.querySelectorAll('.magnet').forEach(function (m) {
+      addEventListener('mousemove', function (e) { var r = m.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2, dx = e.clientX - cx, dy = e.clientY - cy, pad = 150, inside = Math.abs(dx) < r.width / 2 + pad && Math.abs(dy) < r.height / 2 + pad; m.style.transition = inside ? 'transform .3s ease-out' : 'transform .6s ease-in-out'; m.style.transform = inside ? 'translate3d(' + (dx / 3).toFixed(1) + 'px,' + (dy / 3).toFixed(1) + 'px,0)' : ''; }, { passive: true });
+    });
+  }
+
+  /* reveals */
+  var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } }); }, { threshold: .15 });
+  document.querySelectorAll('.r, .deco').forEach(function (el, i) { if (el.classList.contains('deco')) el.style.transitionDelay = ((i % 4) * .12) + 's'; io.observe(el); });
+  document.querySelectorAll('.svc').forEach(function (el, i) { el.classList.add('r'); el.style.transitionDelay = '0s'; io.observe(el); });
+})();
+</script>
+</body>
+</html>
