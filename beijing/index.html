@@ -61,7 +61,7 @@ main:focus { outline: none; }
 .fly { height: 230vh; position: relative; } .stage { position: sticky; top: 0; height: 100svh; overflow: hidden; background: #2A2F40; }
 .bg { position: absolute; inset: -6%; will-change: transform; transform: translate3d(0, calc(var(--p, 0) * -4%), 0) scale(calc(1.02 + var(--p, 0) * .14 * var(--zoom, 1))); } .bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 18, 32, .5), rgba(14, 18, 32, 0) 34%, rgba(14, 18, 32, 0) 60%, rgba(14, 18, 32, .5)); pointer-events: none; }
-.teacher { position: absolute; bottom: 0; height: calc(min(86svh, 118vw) * var(--ts, 1)); aspect-ratio: .7; z-index: 3; will-change: transform; transform: translate3d(0, calc(var(--tin, 1) * 12% + var(--p, 0) * -3%), 0); opacity: calc(1 - var(--tin, 1) * .85); transition: opacity .6s;}
+.teacher { position: absolute; bottom: 0; height: calc(min(86svh, 118vw) * var(--ts, 1)); aspect-ratio: .7; z-index: 3; will-change: transform; transform: translate3d(0, calc(var(--tin, 1) * 12% + var(--p, 0) * -3%), 0); opacity: calc(1 - var(--tin, 1) * .85); }
 .s-r .teacher { right: clamp(0px, 4vw, 90px); } .s-l .teacher { left: clamp(0px, 8vw, 150px); } .teacher img { position: absolute; bottom: 0; left: 50%; height: 100%; width: auto; max-width: 150%; transform: translateX(-50%); object-fit: contain; filter: drop-shadow(0 22px 26px rgba(0, 0, 0, .5)); animation: float 6s ease-in-out infinite; }
 .glow { position: absolute; left: 50%; bottom: 8%; width: 130%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, var(--tc), transparent 62%); opacity: .55; mix-blend-mode: screen; animation: pulse 5s ease-in-out infinite alternate; } @keyframes pulse { to { transform: translateX(-50%) scale(1.12); opacity: .75; } } @keyframes float { 50% { transform: translateX(-50%) translateY(-1.2%); } }
 .hd { position: absolute; top: clamp(70px, 11svh, 120px); z-index: 4; max-width: min(760px, calc(100% - 48px)); will-change: transform; transform: translateY(calc(var(--hin, 1) * 28px)); opacity: calc(1 - var(--hin, 1)); }
@@ -112,6 +112,9 @@ body[data-ch="-1"] .chip { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } .r { opacity: 1; transform: none; } .bg, .l-far, .l-mid, .l-near, .hwrap, .teacher, .hd, .say-card { transform: none !important; opacity: 1 !important; } .l-far, .l-mid, .l-near { transform: translate(-50%, -50%) !important; } .tl { stroke-dashoffset: 0; } }
 
 .prose .zh, .lead .zh { white-space: nowrap; } .hero .kick { background: rgba(244, 246, 250, .9); }
+
+.vbtn { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; min-height: 44px; padding: 0 18px 0 12px; border: 0; border-radius: 99px; background: var(--ink); color: #fff; font: 600 14px var(--body); cursor: pointer; transition: transform .2s var(--ease), background .2s; } .vbtn:hover { transform: translateY(-2px); background: #000; } .vbtn svg { width: 20px; height: 20px; fill: currentColor; } .vbtn.playing { background: var(--ac); } .vbtn.playing svg { animation: pulse2 .8s ease-in-out infinite alternate; } @keyframes pulse2 { to { transform: scale(1.25); } }
+.say-card { will-change: transform, opacity; } .stage .bg, .stage .teacher, .stage .hd, .stage .say-card { backface-visibility: hidden; }
 </style>
 </head>
 <body>
@@ -137,7 +140,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/goku.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>01</b> <span class="zh" lang="zh">欢迎</span> Welcome</p><h2 id="h-intro">Welcome to the northern capital</h2></header>
-    <div class="say-card"><p class="who"><b>Goku</b> <span class="zh" lang="zh">悟空老师</span></p><p class="line" data-text="I&#x27;m Goku. Beijing means northern capital, and about 22 million people live here. That is a lot of energy. Stay close and we will walk it together.">I&#x27;m Goku. Beijing means northern capital, and about 22 million people live here. That is a lot of energy. Stay close and we will walk it together.</p></div>
+    <div class="say-card"><p class="who"><b>Goku</b> <span class="zh" lang="zh">悟空老师</span></p><p class="line" data-text="I&#x27;m Goku. Beijing means northern capital, and about 22 million people live here. That is a lot of energy. Stay close and we will walk it together.">I&#x27;m Goku. Beijing means northern capital, and about 22 million people live here. That is a lot of energy. Stay close and we will walk it together.</p><button type="button" class="vbtn" data-v="assets/voice/goku.mp3" aria-label="Play Goku: Kamehameha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Kamehameha</span></button></div>
   </div></div>
   <div class="wrap body tp-stats"><div class="two"><div class="prose r"><p>Beijing <span class="zh" lang="zh">北京</span> (<i>Běijīng</i>) means northern capital. For most of the last eight centuries, emperors and governments ruled from here. You can see it: golden palace roofs, grey brick lanes and glass towers share one skyline.</p><p>Here is the trick this guide uses. A road called the Central Axis <span class="zh" lang="zh">中轴线</span> runs north to south through the middle of the city, about 7.8 km long. Almost every big sight sits on it, or close to it. So we will walk it, one stop at a time.</p></div><div class="statrow"><div class="stat r"><b data-n="22" data-s="M">22M</b><span>people</span></div><div class="stat r"><b data-n="3000" data-s="+">3,000+</b><span>years of history</span></div><div class="stat r"><b data-n="8" data-s="">8</b><span>UNESCO sites</span></div><div class="stat r"><b data-n="2" data-s="">2</b><span>Olympic Games</span></div></div></div><p class="note r">Beijing is the first city to host both the Summer (2008) and Winter (2022) Olympics.</p></div>
 </section>
@@ -147,7 +150,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/naruto.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>02</b> <span class="zh" lang="zh">长城</span> Great Wall</p><h2 id="h-wall">The Great Wall, a dragon of stone</h2></header>
-    <div class="say-card"><p class="who"><b>Naruto</b> <span class="zh" lang="zh">鸣人老师</span></p><p class="line" data-text="Naruto here. The wall north of Beijing was rebuilt by the Ming dynasty. All the walls together reach 21,196 km. That is a long run, even with a thousand clones.">Naruto here. The wall north of Beijing was rebuilt by the Ming dynasty. All the walls together reach 21,196 km. That is a long run, even with a thousand clones.</p></div>
+    <div class="say-card"><p class="who"><b>Naruto</b> <span class="zh" lang="zh">鸣人老师</span></p><p class="line" data-text="Naruto here. The wall north of Beijing was rebuilt by the Ming dynasty. All the walls together reach 21,196 km. That is a long run, even with a thousand clones.">Naruto here. The wall north of Beijing was rebuilt by the Ming dynasty. All the walls together reach 21,196 km. That is a long run, even with a thousand clones.</p><button type="button" class="vbtn" data-v="assets/voice/naruto.mp3" aria-label="Play Naruto: Rasengan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Rasengan</span></button></div>
   </div></div>
   <div class="wrap body tp-cards"><p class="lead r">No trip to Beijing is complete without standing on the Great Wall. The parts north of the city were rebuilt in stone and brick by the Ming dynasty, and they snake along mountain ridges like a sleeping dragon. Pick the section that fits your mood.</p><div class="grid g3"><article class="card r"><h3>Badaling</h3><div class="zh">八达岭</div><p>The most famous and best restored. Easy to reach, but busy.</p></article><article class="card r"><h3>Mutianyu</h3><div class="zh">慕田峪</div><p>Fewer crowds and forest views. Ride a cable car up and a toboggan down.</p></article><article class="card r"><h3>Jinshanling</h3><div class="zh">金山岭</div><p>Wilder and quieter. The favourite of hikers and photographers.</p></article></div><aside class="fact r"><b>Did you know?</b><p>The old saying that you can see the wall from space is a myth. You cannot spot it with the naked eye.</p></aside></div>
 </section>
@@ -167,7 +170,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/gojo.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>04</b> <span class="zh" lang="zh">天坛</span> Temple of Heaven</p><h2 id="h-temple">Temple of Heaven and Summer Palace</h2></header>
-    <div class="say-card"><p class="who"><b>Gojo</b> <span class="zh" lang="zh">五条老师</span></p><p class="line" data-text="Yo, Gojo here. The Hall of Prayer was built without a single nail and it has stood for six hundred years. Almost as impressive as me. Almost.">Yo, Gojo here. The Hall of Prayer was built without a single nail and it has stood for six hundred years. Almost as impressive as me. Almost.</p></div>
+    <div class="say-card"><p class="who"><b>Gojo</b> <span class="zh" lang="zh">五条老师</span></p><p class="line" data-text="Yo, Gojo here. The Hall of Prayer was built without a single nail and it has stood for six hundred years. Almost as impressive as me. Almost.">Yo, Gojo here. The Hall of Prayer was built without a single nail and it has stood for six hundred years. Almost as impressive as me. Almost.</p><button type="button" class="vbtn" data-v="assets/voice/gojo.mp3" aria-label="Play Gojo: Hollow Purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Hollow Purple</span></button></div>
   </div></div>
   <div class="wrap body tp-cards2"><div class="grid g2"><article class="card r"><h3>Temple of Heaven 天坛</h3><div class="zh">Tiāntán</div><p>Emperors came here every year to pray for a good harvest. The round Hall of Prayer rises 38 metres on three marble terraces and has no nails at all. Visit at sunrise, when locals practise tai chi, sing and play cards in the park.</p></article><article class="card r"><h3>Summer Palace 颐和园</h3><div class="zh">Yíhéyuán</div><p>The emperors escaped the summer heat here. Walk the Long Corridor, 728 metres of painted beams, cross the Seventeen-Arch Bridge and find the Marble Boat. In winter the lake freezes into a huge skating rink.</p></article></div><aside class="fact r"><b>Round and square</b><p>The halls are round and their bases square, because ancient China pictured heaven as round and the earth as square. Whisper at the Echo Wall and a friend far along it can hear you.</p></aside></div>
 </section>
@@ -177,7 +180,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/aizen.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>05</b> <span class="zh" lang="zh">胡同</span> Hutongs</p><h2 id="h-hutong">Old Beijing, lane by lane</h2></header>
-    <div class="say-card"><p class="who"><b>Aizen</b> <span class="zh" lang="zh">蓝染老师</span></p><p class="line" data-text="I am Aizen. These lanes look simple. Every door hides a story, so look closely. Things are rarely what they seem.">I am Aizen. These lanes look simple. Every door hides a story, so look closely. Things are rarely what they seem.</p></div>
+    <div class="say-card"><p class="who"><b>Aizen</b> <span class="zh" lang="zh">蓝染老师</span></p><p class="line" data-text="I am Aizen. These lanes look simple. Every door hides a story, so look closely. Things are rarely what they seem.">I am Aizen. These lanes look simple. Every door hides a story, so look closely. Things are rarely what they seem.</p><button type="button" class="vbtn" data-v="assets/voice/aizen.mp3" aria-label="Play Aizen: Yōkoso"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Yōkoso</span></button></div>
   </div></div>
   <div class="wrap body tp-split"><div class="two"><div class="prose r"><p>Step off the wide avenues into the hutongs <span class="zh" lang="zh">胡同</span>: narrow grey brick lanes lined with courtyard homes called <i>sìhéyuàn</i> <span class="zh" lang="zh">四合院</span>. Neighbours play chess on the doorstep and songbirds sing from cages in the trees.</p><p>Wander Nanluoguxiang <span class="zh" lang="zh">南锣鼓巷</span>, circle the lakes of Houhai <span class="zh" lang="zh">后海</span> and listen for the old Drum and Bell Towers.</p><aside class="fact r"><b>Local secret</b><p>Rent a bicycle or hop on a pedicab at dusk. When the lanterns come on and dinner smells drift out of every courtyard, the hutongs are at their best.</p></aside></div><div><h3 class="sub r">Before you go in</h3><ol class="steps"><li class="r"><b>Look at the doors</b><span>Stone drums, door studs and red couplets once showed a family's rank and wishes.</span></li><li class="r"><b>Remember these are homes</b><span>Keep your voice down and ask before you photograph people.</span></li><li class="r"><b>Catch a show</b><span>See Peking opera 京剧 (Jīngjù) or sip jasmine tea in a teahouse.</span></li></ol></div></div></div>
 </section>
@@ -187,7 +190,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/luffy.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>06</b> <span class="zh" lang="zh">美食</span> Food</p><h2 id="h-food">The flavour of Beijing</h2></header>
-    <div class="say-card"><p class="who"><b>Luffy</b> <span class="zh" lang="zh">路飞老师</span></p><p class="line" data-text="I&#x27;m Luffy! I&#x27;m going to eat every dish in Beijing. Peking duck, noodles, dumplings, hot pot. Meat! Let&#x27;s eat!">I&#x27;m Luffy! I&#x27;m going to eat every dish in Beijing. Peking duck, noodles, dumplings, hot pot. Meat! Let&#x27;s eat!</p></div>
+    <div class="say-card"><p class="who"><b>Luffy</b> <span class="zh" lang="zh">路飞老师</span></p><p class="line" data-text="I&#x27;m Luffy! I&#x27;m going to eat every dish in Beijing. Peking duck, noodles, dumplings, hot pot. Meat! Let&#x27;s eat!">I&#x27;m Luffy! I&#x27;m going to eat every dish in Beijing. Peking duck, noodles, dumplings, hot pot. Meat! Let&#x27;s eat!</p><button type="button" class="vbtn" data-v="assets/voice/luffy.mp3" aria-label="Play Luffy: King of the Pirates"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>King of the Pirates</span></button></div>
   </div></div>
   <div class="wrap body tp-tiles"><p class="lead r">Beijing cooking is hearty northern food: wheat instead of rice, roast meats, noodles and dumplings. Every dish tells a story about emperors and cold winters.</p><div class="grid g3"><article class="tile r"><div class="big zh" lang="zh">鸭</div><h3>Peking duck 北京烤鸭 <small>Běijīng kǎoyā</small></h3><p>Glossy roast duck carved at the table and wrapped in thin pancakes with spring onion and sweet bean sauce.</p></article><article class="tile r"><div class="big zh" lang="zh">面</div><h3>Zhajiang noodles 炸酱面 <small>zhájiàngmiàn</small></h3><p>Thick noodles tossed in a rich fried soybean paste with fresh cucumber. Beijing comfort food.</p></article><article class="tile r"><div class="big zh" lang="zh">饼</div><h3>Jianbing 煎饼 <small>jiānbing</small></h3><p>The breakfast of the city: a hot crêpe with egg, herbs, chilli sauce and a crunchy cracker.</p></article><article class="tile r"><div class="big zh" lang="zh">锅</div><h3>Mutton hotpot 涮羊肉 <small>shuàn yángròu</small></h3><p>Paper-thin lamb swished in a copper pot of bubbling broth. Perfect in winter.</p></article><article class="tile r"><div class="big zh" lang="zh">饺</div><h3>Dumplings 饺子 <small>jiǎozi</small></h3><p>Boiled parcels of meat and vegetables, eaten with vinegar. Families make them together at New Year.</p></article><article class="tile r"><div class="big zh" lang="zh">糖</div><h3>Tanghulu 糖葫芦 <small>tánghúlu</small></h3><p>Hawthorn berries on a stick, dipped in clear, crackling sugar.</p></article></div><aside class="fact r"><b>Table manners</b><p>Say <b class="zh" lang="zh">好吃!</b> (<i>hǎochī</i>, delicious) to make any cook smile. Never stand chopsticks upright in rice, because it looks like incense for the dead.</p></aside></div>
 </section>
@@ -205,7 +208,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
   <div class="fly"><div class="stage s-l">
     <div class="bg" aria-hidden="true"><img src="assets/06-modern.webp" alt="" style="object-position:78% 78%" loading="lazy" decoding="async"></div>
     <div class="shade" aria-hidden="true"></div>
-    <div class="teacher" style="--ts:0.66" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/guts.webp" alt="" loading="lazy" decoding="async"></div>
+    <div class="teacher" style="--ts:0.8" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/guts.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>08</b> <span class="zh" lang="zh">交通</span> Transit</p><h2 id="h-transit">Moving through the city</h2></header>
     <div class="say-card"><p class="who"><b>Guts</b> <span class="zh" lang="zh">格斯老师</span></p><p class="line" data-text="I&#x27;m Guts. I have walked a long road carrying a heavy sword. In Beijing the subway carries you instead. Just keep moving forward.">I&#x27;m Guts. I have walked a long road carrying a heavy sword. In Beijing the subway carries you instead. Just keep moving forward.</p></div>
   </div></div>
@@ -217,7 +220,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/levi.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>09</b> <span class="zh" lang="zh">公园</span> Parks and Hills</p><h2 id="h-parks">Beyond the walls: parks, hills and tombs</h2></header>
-    <div class="say-card"><p class="who"><b>Levi</b> <span class="zh" lang="zh">利威尔老师</span></p><p class="line" data-text="Levi. Listen up. Beijing&#x27;s parks are clean, so keep them that way. Climb the hill, enjoy the view, and carry your rubbish out.">Levi. Listen up. Beijing&#x27;s parks are clean, so keep them that way. Climb the hill, enjoy the view, and carry your rubbish out.</p></div>
+    <div class="say-card"><p class="who"><b>Eren Yeager</b> <span class="zh" lang="zh">艾伦老师</span></p><p class="line" data-text="Eren Yeager here. Beijing&#x27;s parks are clean, so keep them that way. Climb the hill, enjoy the view, and carry your rubbish out.">Eren Yeager here. Beijing&#x27;s parks are clean, so keep them that way. Climb the hill, enjoy the view, and carry your rubbish out.</p></div>
   </div></div>
   <div class="wrap body tp-tiles"><p class="lead r">When the city feels too big, do what Beijingers do and head for the trees. Imperial gardens and forested hills are a short subway or bus ride away.</p><div class="grid g4"><article class="tile r"><div class="big zh" lang="zh">香</div><h3>Fragrant Hills 香山 <small>Xiāngshān</small></h3><p>Hillsides that blaze red and gold with autumn leaves every October.</p></article><article class="tile r"><div class="big zh" lang="zh">海</div><h3>Beihai Park 北海公园 <small>Běihǎi</small></h3><p>A thousand-year-old imperial garden. Row a boat around the White Dagoba.</p></article><article class="tile r"><div class="big zh" lang="zh">陵</div><h3>Ming Tombs 十三陵 <small>Shísānlíng</small></h3><p>The valley where 13 Ming emperors rest, reached by a road of stone animals.</p></article><article class="tile r"><div class="big zh" lang="zh">景</div><h3>Jingshan Park 景山 <small>Jǐngshān</small></h3><p>A small hill with the best sunset view over the golden roofs of the Forbidden City.</p></article></div><div class="two"><div class="fact r"><b>Hiker's checklist</b><ul class="ticks"><li>Pack plenty of water, sun protection and snacks.</li><li>Check the weather and air quality before you set off.</li><li>Wear shoes with grip. Old steps are steep and uneven.</li><li>Carry your rubbish out and respect wildlife.</li></ul></div><blockquote class="quote r"><span class="brush zh" lang="zh">读万卷书，行万里路</span><span>Read ten thousand books, walk ten thousand miles.</span></blockquote></div></div>
 </section>
@@ -280,9 +283,9 @@ body[data-ch="-1"] .chip { opacity: 0; }
   }
   document.querySelectorAll('.line').forEach(function (el, i) { el.id = 'ln' + i; if (!reduce) el.textContent = ''; });
 
-  var ticking = false, last = -1;
+  var ticking = false, last = -1, sm = [], lastT = performance.now();
   function frame() {
-    ticking = false;
+    ticking = false; var now = performance.now(), dt = Math.min(.05, (now - lastT) / 1000); lastT = now, moving = false;
     var y = window.scrollY || 0, vh = innerHeight, h = root.scrollHeight - vh;
     root.style.setProperty('--prog', h > 0 ? (y / h).toFixed(4) : 0);
     if (!reduce && hero) {
@@ -292,7 +295,9 @@ body[data-ch="-1"] .chip { opacity: 0; }
     for (var i = 0; i < N; i++) {
       var c = chs[i], fly = c.querySelector('.fly'), r = fly.getBoundingClientRect();
       if (r.top < vh * .5) cur = i;
-      var span = r.height - vh, p = clamp(-r.top / Math.max(1, span), 0, 1);
+      var span = r.height - vh, raw = clamp(-r.top / Math.max(1, span), 0, 1);
+      if (sm[i] === undefined || reduce) sm[i] = raw; else { sm[i] += (raw - sm[i]) * (1 - Math.exp(-dt * 11)); if (Math.abs(raw - sm[i]) > .0008) moving = true; else sm[i] = raw; }
+      var p = sm[i];
       if (r.bottom > -vh && r.top < vh * 2) {
         var st = c.querySelector('.stage');
         if (!reduce) {
@@ -309,12 +314,14 @@ body[data-ch="-1"] .chip { opacity: 0; }
     var frac = cur < 0 ? 0 : (function () { var r = chs[cur].getBoundingClientRect(); return clamp(-r.top / Math.max(1, r.height - vh), 0, 1); })();
     axisProg = cur < 0 ? 0 : (cur + frac) / N + .5 / N;
     root.style.setProperty('--axis', clamp(axisProg, 0, 1).toFixed(4));
+    if (moving) req();
     if (cur !== last) {
       last = cur; body.dataset.ch = cur;
       links.forEach(function (a, i) { a.classList.toggle('on', i === cur); a.classList.toggle('done', i < cur); if (i === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
       if (chipB) { chipB.textContent = cur < 0 ? '00' : ('0' + (cur + 1)).slice(-2); chipS.textContent = cur < 0 ? 'Start' : (links[cur].querySelector('.lab').textContent.replace(/^\d+\s*/, '')); }
     }
   }
+  var moving = false;
   function req() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
   addEventListener('scroll', req, { passive: true }); addEventListener('resize', req);
   if (hero && !reduce) {
@@ -343,6 +350,13 @@ body[data-ch="-1"] .chip { opacity: 0; }
 
   /* smooth in-page jumps land on the card moment of a chapter */
   document.querySelectorAll('.axis a').forEach(function (a) { a.addEventListener('click', function (e) { var t = document.querySelector(a.getAttribute('href')); if (!t) return; e.preventDefault(); var f = t.querySelector('.fly'), y = f.getBoundingClientRect().top + scrollY + (f.offsetHeight - innerHeight) * .5; scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' }); }); });
+})();
+
+(function () {
+  var a = new Audio(), cur = null; a.preload = 'none';
+  function stop() { if (cur) cur.classList.remove('playing'); cur = null; }
+  a.addEventListener('ended', stop);
+  document.querySelectorAll('.vbtn').forEach(function (b) { b.addEventListener('click', function () { if (cur === b) { a.pause(); stop(); return; } stop(); a.src = b.getAttribute('data-v'); a.currentTime = 0; a.play().catch(function () {}); b.classList.add('playing'); cur = b; }); });
 })();
 </script>
 </body>
