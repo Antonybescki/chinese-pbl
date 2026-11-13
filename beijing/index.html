@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Exploring Beijing 北京 | One road, twelve teachers</title>
+<meta name="description" content="A guide to Beijing that walks the Central Axis, taught by twelve anime teachers. Chinese PBL project by A. Antony Bescki, RA2611026010076.">
+<meta name="theme-color" content="#E3E7EE">
+<meta property="og:title" content="Exploring Beijing 北京">
+<meta property="og:description" content="Walk Beijing's Central Axis with twelve anime teachers.">
+<meta property="og:type" content="website">
+<!-- DEPLOY STEP: set og:url and og:image to the live absolute URLs -->
+<meta property="og:image" content="assets/01-hero.webp">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23C23B2E'/%3E%3Cpath d='M32 8v48' stroke='%23fff' stroke-width='6'/%3E%3Ccircle cx='32' cy='32' r='8' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preload" as="image" href="assets/01-hero.webp" fetchpriority="high">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@500&family=Noto+Sans+SC:wght@500;700&family=Ma+Shan+Zheng&display=swap">
+<style>:root { --canvas: #E3E7EE; --panel: #F4F6FA; --ink: #171C2E; --ink2: #475069; --line: rgba(23, 28, 46, .14); --ac: #C23B2E; --ac2: #A32D22; --tc: #C23B2E; --ease: cubic-bezier(.2, .8, .2, 1);
+  --disp: "Bricolage Grotesque", "Avenir Next", system-ui, sans-serif; --body: Figtree, system-ui, -apple-system, "Segoe UI", sans-serif; --mono: "JetBrains Mono", ui-monospace, Menlo, monospace; --han: "Noto Sans SC", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif; --brush: "Ma Shan Zheng", "Kaiti SC", "STKaiti", KaiTi, serif; }
+* { box-sizing: border-box; } html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--canvas); color: var(--ink); font: 400 17px/1.65 var(--body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+h1, h2, h3, p, ol, ul, blockquote { margin: 0; padding: 0; } ol, ul { list-style: none; }
+h1, h2, h3 { font-family: var(--disp); line-height: 1.04; letter-spacing: -.02em; text-wrap: balance; }
+.zh { font-family: var(--han); font-weight: 700; } .brush { font-family: var(--brush); font-weight: 400; } i { font-style: italic; }
+a { color: inherit; } :focus-visible { outline: 3px solid var(--ac); outline-offset: 3px; border-radius: 4px; }
+.skip { position: fixed; left: 12px; top: -60px; z-index: 100; background: var(--ink); color: #fff; padding: 10px 16px; border-radius: 8px; transition: top .2s; } .skip:focus { top: 12px; }
+main:focus { outline: none; }
+.wrap { width: min(1120px, 100% - 40px); margin-inline: auto; }
+
+/* one fixed environment: slow drifting mist behind the page */
+.env { position: fixed; inset: 0; z-index: -1; overflow: hidden; } .env i { position: absolute; width: 70vmax; aspect-ratio: 1; border-radius: 50%; filter: blur(80px); opacity: .5; animation: drift 90s ease-in-out infinite alternate; }
+.env i:nth-child(1) { background: #F6D9C4; left: -20vmax; top: -10vmax; } .env i:nth-child(2) { background: #C9D6EE; right: -24vmax; bottom: -20vmax; animation-duration: 120s; animation-direction: alternate-reverse; }
+@keyframes drift { to { transform: translate(14vmax, 8vmax) scale(1.2); } }
+.topbar { position: fixed; left: 0; right: 0; top: 0; height: 4px; z-index: 60; } .bar { display: block; height: 100%; transform-origin: 0 50%; transform: scaleX(var(--prog, 0)); background: var(--ac); }
+
+/* the signature: the Central Axis as a drawn line with twelve stops */
+.axis { position: fixed; left: 26px; top: 14vh; bottom: 14vh; width: 0; z-index: 50; }
+.axis::before, .axis .fill { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: rgba(23, 28, 46, .22); } .axis .fill { background: var(--ac); transform-origin: 0 0; transform: scaleY(var(--axis, 0)); box-shadow: 0 0 10px rgba(194, 59, 46, .55); }
+.axis ol { position: absolute; inset: 0; } .axis li { position: absolute; left: 0; } .axis a { position: relative; display: flex; align-items: center; margin: -22px 0 0 -22px; width: 44px; height: 44px; text-decoration: none; justify-content: center; }
+.axis .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--canvas); border: 2px solid var(--ink); transition: transform .3s var(--ease), background .3s; }
+.axis a.on .dot, .axis a.done .dot { background: var(--ac); border-color: var(--ac); } .axis a.on .dot { transform: scale(1.7); }
+.axis .lab { position: absolute; left: 40px; white-space: nowrap; font: 500 12px/1 var(--mono); letter-spacing: .04em; background: var(--ink); color: #fff; padding: 7px 10px; border-radius: 8px; opacity: 0; transform: translateX(-6px); transition: .2s; pointer-events: none; } .axis .lab b { color: #FFB4A9; }
+.axis a:hover .lab, .axis a:focus-visible .lab { opacity: 1; transform: none; }
+@media (max-width: 1100px) { .axis { display: none; } }
+
+/* hero: five depth layers that move at different speeds as you scroll */
+.hero { position: relative; min-height: 100svh; overflow: hidden; display: flex; align-items: flex-start; background: #E8A86B; }
+.hl { position: absolute; inset: 0; } .hl::after { content: ""; position: absolute; inset: 0; z-index: 1; background: linear-gradient(90deg, rgba(14, 18, 32, .5), rgba(14, 18, 32, 0) 62%); pointer-events: none; } .hl img { position: absolute; left: 50%; top: 50%; min-width: 100%; min-height: 100%; width: auto; height: 112%; max-width: none; object-fit: cover; will-change: transform; }
+.l-far { transform: translate(-50%, calc(-50% + var(--hp, 0) * 20px)) scale(calc(1.06 + var(--hp, 0) * .04)); } .l-mid { transform: translate(calc(-50% + var(--hx, 0) * -10px), calc(-50% + var(--hp, 0) * -50px)) scale(calc(1.08 + var(--hp, 0) * .1)); } .l-near { transform: translate(calc(-50% + var(--hx, 0) * -22px), calc(-50% + var(--hp, 0) * -140px)) scale(calc(1.1 + var(--hp, 0) * .26)); }
+.mist { position: absolute; left: -20%; right: -20%; height: 34%; pointer-events: none; background: radial-gradient(60% 100% at 50% 60%, rgba(255, 244, 232, .7), transparent 70%); filter: blur(14px); will-change: transform; }
+.m1 { top: 44%; animation: mist 38s ease-in-out infinite alternate; } .m2 { top: 62%; opacity: .75; animation: mist 52s ease-in-out infinite alternate-reverse; } @keyframes mist { from { transform: translateX(-6%); } to { transform: translateX(6%); } }
+.hwrap { position: relative; z-index: 2; width: min(1120px, 100% - 40px); margin: 0 auto; padding: 14svh 0 10svh 0; will-change: transform, opacity; transform: translateY(calc(var(--hp, 0) * -40px)); opacity: calc(1 - var(--hp, 0) * 1.1); }
+.kick { display: inline-flex; gap: 8px; align-items: center; font: 500 12px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--ink); background: rgba(244, 246, 250, .86); border: 1px solid var(--line); padding: 8px 14px; border-radius: 99px; backdrop-filter: blur(8px); } .kick b { color: var(--ac); }
+.hero h1 { font-size: clamp(46px, 8.6vw, 124px); font-weight: 800; margin-top: 22px; color: #fff; max-width: 11ch; text-shadow: 0 2px 34px rgba(10, 14, 28, .8), 0 1px 3px rgba(10, 14, 28, .7); } .hero h1 span { display: block; color: #FFC9BF; }
+.sub { font-size: clamp(17px, 1.9vw, 21px); max-width: 38ch; margin-top: 22px; color: var(--ink); background: rgba(244, 246, 250, .8); backdrop-filter: blur(10px); padding: 14px 18px; border-radius: 16px; }
+.byline { display: inline-grid; margin-top: 20px; padding: 10px 18px; border-left: 4px solid var(--ac); background: rgba(244, 246, 250, .86); border-radius: 0 12px 12px 0; } .byline b { font: 800 20px var(--disp); letter-spacing: .06em; } .byline span { font: 500 12px var(--mono); letter-spacing: .1em; color: var(--ink2); }
+.go { display: inline-flex; align-items: center; gap: 10px; margin: 24px 0 0 20px; min-height: 52px; padding: 0 26px; border-radius: 99px; background: var(--ink); color: #fff; text-decoration: none; font: 600 16px var(--body); transition: transform .25s var(--ease), background .25s; vertical-align: top; } .go:hover { transform: translateY(-3px); background: #000; } .go svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; animation: nudge 1.8s ease-in-out infinite; } @keyframes nudge { 50% { transform: translateY(4px); } }
+
+/* chapters: a pinned scene with the teacher, then the content */
+.ch { position: relative; padding-bottom: clamp(60px, 9vw, 120px); }
+.fly { height: 230vh; position: relative; } .stage { position: sticky; top: 0; height: 100svh; overflow: hidden; background: #2A2F40; }
+.bg { position: absolute; inset: -6%; will-change: transform; transform: translate3d(0, calc(var(--p, 0) * -4%), 0) scale(calc(1.02 + var(--p, 0) * .14 * var(--zoom, 1))); } .bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14, 18, 32, .5), rgba(14, 18, 32, 0) 34%, rgba(14, 18, 32, 0) 60%, rgba(14, 18, 32, .5)); pointer-events: none; }
+.teacher { position: absolute; bottom: 0; height: calc(min(86svh, 118vw) * var(--ts, 1)); aspect-ratio: .7; z-index: 3; will-change: transform; transform: translate3d(0, calc(var(--tin, 1) * 12% + var(--p, 0) * -3%), 0); opacity: calc(1 - var(--tin, 1) * .85); transition: opacity .6s;}
+.s-r .teacher { right: clamp(0px, 4vw, 90px); } .s-l .teacher { left: clamp(0px, 8vw, 150px); } .teacher img { position: absolute; bottom: 0; left: 50%; height: 100%; width: auto; max-width: 150%; transform: translateX(-50%); object-fit: contain; filter: drop-shadow(0 22px 26px rgba(0, 0, 0, .5)); animation: float 6s ease-in-out infinite; }
+.glow { position: absolute; left: 50%; bottom: 8%; width: 130%; aspect-ratio: 1; transform: translateX(-50%); border-radius: 50%; background: radial-gradient(circle, var(--tc), transparent 62%); opacity: .55; mix-blend-mode: screen; animation: pulse 5s ease-in-out infinite alternate; } @keyframes pulse { to { transform: translateX(-50%) scale(1.12); opacity: .75; } } @keyframes float { 50% { transform: translateX(-50%) translateY(-1.2%); } }
+.hd { position: absolute; top: clamp(70px, 11svh, 120px); z-index: 4; max-width: min(760px, calc(100% - 48px)); will-change: transform; transform: translateY(calc(var(--hin, 1) * 28px)); opacity: calc(1 - var(--hin, 1)); }
+.s-r .hd { left: clamp(24px, 7vw, 120px); } .s-l .hd { right: clamp(24px, 7vw, 120px); text-align: right; } .s-l .hd .kick { margin-left: auto; }
+.hd h2 { margin-top: 16px; font-size: clamp(30px, 5.4vw, 70px); font-weight: 800; color: #fff; text-shadow: 0 2px 30px rgba(10, 14, 28, .75), 0 1px 3px rgba(10, 14, 28, .6); }
+.say-card { position: absolute; bottom: clamp(22px, 6svh, 70px); z-index: 4; width: min(400px, calc(100% - 40px)); padding: 18px 22px; border-radius: 22px; background: rgba(244, 246, 250, .93); backdrop-filter: blur(16px); box-shadow: 0 24px 50px -24px rgba(8, 10, 22, .6); border-top: 4px solid var(--tc); will-change: transform; transform: translateY(calc(var(--sin, 1) * 34px)); opacity: calc(1 - var(--sin, 1)); }
+.s-r .say-card { left: clamp(20px, 6vw, 110px); } .s-l .say-card { right: clamp(20px, 6vw, 110px); }
+.who { font: 600 14px/1.2 var(--body); letter-spacing: .02em; margin-bottom: 8px; } .who b { font: 800 22px var(--disp); margin-right: 6px; } .who .zh { color: var(--ink2); font-size: 14px; }
+.line { font-size: 16.5px; line-height: 1.55; color: var(--ink); min-height: 5.6em; } .line.typing::after { content: "▍"; color: var(--ac); animation: blink .8s steps(2) infinite; } @keyframes blink { 50% { opacity: 0; } }
+@media (max-width: 760px) { .say-card { bottom: 66px !important; } .teacher { height: calc(min(58svh, 96vw) * var(--ts, 1)); } .s-r .teacher { right: -6vw; } .s-l .teacher { left: -6vw; } .say-card { bottom: 14px; padding: 14px 16px; } .line { font-size: 15px; min-height: 0; } .hd { top: 74px; } .s-l .hd { text-align: left; right: auto; left: 20px; } .s-l .hd .kick { margin-left: 0; } .s-l .say-card, .s-r .say-card { left: 14px; right: 14px; width: auto; } }
+
+/* content: four different skeletons so neighbours never look stamped */
+.body { padding-top: clamp(40px, 6vw, 80px); }
+.lead { font-size: clamp(18px, 1.9vw, 22px); max-width: 62ch; margin-bottom: 28px; } .prose p + p { margin-top: 14px; } .prose { font-size: 18px; }
+.grid { display: grid; gap: 16px; margin-bottom: 24px; } .grid > * { min-width: 0; } .g2 { grid-template-columns: repeat(2, 1fr); } .g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); }
+.card, .tile, .say, .season, .steps li, .day, .checks, .fact, .quote { background: var(--panel); border: 1px solid var(--line); border-radius: 22px; box-shadow: 0 14px 30px -24px rgba(23, 28, 46, .6); }
+.card { padding: 22px 24px 24px; border-top: 4px solid var(--tc); } .card h3 { font-size: 21px; } .card .zh { color: var(--ink2); font-size: 15px; margin-top: 2px; } .card .when { font: 500 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); margin-top: 4px; } .card p { margin-top: 10px; font-size: 16px; color: var(--ink2); }
+.tile { padding: 20px 22px 22px; position: relative; overflow: hidden; } .tile .big { font-size: 74px; line-height: 1; color: var(--tc); opacity: .9; margin-bottom: 8px; } .tile h3 { font-size: 18px; } .tile h3 small { display: block; font: 500 12px var(--mono); letter-spacing: .06em; color: var(--ink2); margin-top: 4px; } .tile p { margin-top: 10px; font-size: 15.5px; color: var(--ink2); }
+.fact { padding: 18px 24px 20px; margin-top: 12px; border-left: 6px solid var(--tc); } .fact b { font: 800 17px var(--disp); display: block; margin-bottom: 4px; } .fact p { font-size: 16px; color: var(--ink2); }
+.two { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(24px, 4vw, 60px); align-items: start; } .two.end { align-items: stretch; }
+.sub { font: 800 20px var(--disp); margin-bottom: 14px; } .note { color: var(--ink2); font-size: 15px; margin-top: 14px; }
+.steps { display: grid; gap: 12px; counter-reset: s; } .steps li { counter-increment: s; display: grid; grid-template-columns: 46px 1fr; gap: 4px 14px; align-items: center; padding: 14px 18px; } .steps li::before { content: counter(s); grid-row: span 2; width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: var(--ink); color: #fff; font: 800 18px var(--disp); }
+.steps b { font-size: 16px; } .steps span { color: var(--ink2); font-size: 15px; grid-column: 2; }
+.statrow { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; } .tp-stats2 .statrow { grid-template-columns: repeat(3, 1fr); } .stat { padding: 22px 16px; border-radius: 22px; background: var(--ink); color: #fff; text-align: center; } .stat b { display: block; font: 800 clamp(34px, 5vw, 54px) var(--disp); line-height: 1; color: #FFC9BF; } .stat span { font: 500 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+.ticks li { padding: 8px 0 8px 32px; position: relative; font-size: 15.5px; color: var(--ink2); } .ticks li::before { content: ""; position: absolute; left: 0; top: 13px; width: 18px; height: 18px; border-radius: 50%; background: var(--tc); } .ticks li::after { content: ""; position: absolute; left: 6px; top: 17px; width: 5px; height: 9px; border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg); }
+.quote { padding: 28px; display: grid; gap: 10px; align-content: center; text-align: center; border-style: dashed; } .quote .brush { font-size: clamp(30px, 4vw, 46px); line-height: 1.2; } .quote span:last-child { color: var(--ink2); }
+.say { padding: 14px 18px; display: grid; } .say .zh { font-size: 26px; line-height: 1.3; } .say i { color: var(--ac2); font-size: 15px; } .say span:last-child { color: var(--ink2); font-size: 14px; }
+.tones { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 24px; } .tone { text-align: center; padding: 14px 8px 16px; border-radius: 22px; background: var(--panel); border: 1px solid var(--line); cursor: pointer; display: grid; gap: 2px; transition: transform .25s var(--ease), box-shadow .25s; min-height: 44px; } .tone:hover { transform: translateY(-4px); box-shadow: 0 18px 30px -22px rgba(23, 28, 46, .7); }
+.tone svg { width: 100%; height: 60px; } .grid-l { stroke: var(--line); fill: none; stroke-dasharray: 3 4; } .tl { fill: none; stroke: var(--ink); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 1; stroke-dashoffset: 0; } .tone.play .tl { animation: draw 1.2s ease-out; stroke: var(--ac); } @keyframes draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.tone .zh { font-size: 36px; } .tone i { color: var(--ac2); } .tone small { font-size: 12px; color: var(--ink2); }
+.season { padding: 24px 18px; text-align: center; background: linear-gradient(170deg, color-mix(in srgb, var(--sc) 24%, var(--panel)), var(--panel) 72%); } .season .big { font-size: 64px; line-height: 1; color: var(--sc); } .season h3 { font-size: 20px; } .season small { font: 500 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); } .season p { margin-top: 8px; text-align: left; font-size: 15px; color: var(--ink2); }
+.days { display: grid; gap: 16px; margin-bottom: 28px; } .day { display: grid; grid-template-columns: 190px 1fr; overflow: hidden; } .dh { padding: 20px 10px; text-align: center; display: grid; align-content: center; background: var(--ink); color: #fff; } .dh b { font: 800 22px var(--disp); letter-spacing: .06em; text-transform: uppercase; } .dh .brush { font-size: 50px; line-height: 1.1; color: #FFC9BF; } .dh small { font: 500 12px var(--mono); letter-spacing: .1em; text-transform: uppercase; opacity: .85; }
+.db { padding: 10px 24px; } .db > div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 12px 0; } .db > div + div { border-top: 1px solid var(--line); } .db b { font: 500 12px var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--ac2); padding-top: 4px; } .db span { color: var(--ink2); font-size: 16px; }
+.checks { padding: 24px; } .checks label { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: center; min-height: 48px; border-bottom: 1px solid var(--line); cursor: pointer; font-size: 16px; } .checks input { position: absolute; opacity: 0; } .checks label > span { width: 26px; height: 26px; border: 2px solid var(--ink); border-radius: 9px; display: grid; place-items: center; transition: background .15s; }
+.checks input:checked + span { background: var(--ac); border-color: var(--ac); } .checks input:checked + span::after { content: "✓"; color: #fff; font-weight: 800; } .checks input:focus-visible + span { outline: 3px solid var(--ink); outline-offset: 2px; } .checks label:has(input:checked) { color: var(--ink2); text-decoration: line-through; }
+.meter { height: 10px; border-radius: 99px; background: var(--line); margin-top: 18px; overflow: hidden; } .meter i { display: block; width: 100%; height: 100%; transform: scaleX(0); transform-origin: 0 50%; background: var(--ac); transition: transform .5s var(--ease); } .mtxt { font: 500 12px var(--mono); letter-spacing: .1em; color: var(--ink2); margin-top: 8px; }
+.finale { display: grid; gap: 18px; justify-items: center; align-content: center; text-align: center; padding: 28px; border-radius: 22px; background: var(--ink); color: #fff; } .bon { font-size: clamp(60px, 9vw, 112px); line-height: 1; color: #FFC9BF; } .finale p { font-size: 18px; max-width: 28ch; color: #DEE3EF; }
+.cta { display: inline-flex; align-items: center; justify-content: center; min-height: 56px; padding: 0 32px; border-radius: 99px; background: var(--ac); color: #fff; text-decoration: none; font: 700 17px var(--body); box-shadow: 0 18px 34px -16px rgba(194, 59, 46, .9); transition: transform .25s var(--ease), background .25s; } .cta:hover { transform: translateY(-3px); background: var(--ac2); }
+.r { opacity: 0; transform: translateY(26px); transition: opacity .7s var(--ease), transform .7s var(--ease); } .r.on { opacity: 1; transform: none; }
+footer { position: relative; padding: 44px 20px 64px; text-align: center; background: var(--ink); color: #D5DBEA; } footer p { max-width: 70ch; margin: 6px auto 0; font-size: 14px; } .fb b { font: 800 20px var(--disp); letter-spacing: .06em; color: #fff; }
+.chip { position: fixed; left: 14px; bottom: 14px; z-index: 55; display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 16px 0 8px; border-radius: 99px; background: rgba(244, 246, 250, .92); backdrop-filter: blur(12px); border: 1px solid var(--line); font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; pointer-events: none; transition: opacity .3s; } .chip b { background: var(--ac); color: #fff; padding: 4px 10px; border-radius: 99px; font: 800 14px var(--disp); }
+body[data-ch="-1"] .chip { opacity: 0; }
+
+@media (max-width: 900px) { .two { grid-template-columns: 1fr; } .g3, .g4 { grid-template-columns: repeat(2, 1fr); } .tones { grid-template-columns: repeat(3, 1fr); } .fly { height: 190vh; } }
+@media (max-width: 600px) { body { font-size: 16px; } .g2, .g3, .g4 { grid-template-columns: 1fr; } .tones { grid-template-columns: repeat(2, 1fr); } .tp-stats2 .statrow { grid-template-columns: 1fr; } .day { grid-template-columns: 1fr; } .dh { grid-auto-flow: column; justify-content: center; align-items: center; gap: 14px; padding: 12px; } .dh .brush { font-size: 34px; } .db > div { grid-template-columns: 1fr; gap: 0; } .chip span { display: none; } .go { margin: 16px 0 0; } .hwrap { padding-top: 12svh; } .tile .big { font-size: 56px; } }
+@media (pointer: coarse) { .go, .cta, .tone { min-height: 48px; } }
+@media (max-height: 560px) { .hd h2 { font-size: 28px; } .teacher { height: 70svh; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } .r { opacity: 1; transform: none; } .bg, .l-far, .l-mid, .l-near, .hwrap, .teacher, .hd, .say-card { transform: none !important; opacity: 1 !important; } .l-far, .l-mid, .l-near { transform: translate(-50%, -50%) !important; } .tl { stroke-dashoffset: 0; } }
+
+.prose .zh, .lead .zh { white-space: nowrap; } .hero .kick { background: rgba(244, 246, 250, .9); }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="env" aria-hidden="true"><i></i><i></i></div>
+<div class="topbar" role="presentation"><i class="bar"></i></div>
+<nav class="axis" aria-label="Chapters"><i class="fill"></i><ol><li><a href="#intro"><span class="dot"></span><span class="lab"><b>01</b> <span class="zh" lang="zh">欢迎</span> Welcome</span></a></li><li><a href="#wall"><span class="dot"></span><span class="lab"><b>02</b> <span class="zh" lang="zh">长城</span> Great Wall</span></a></li><li><a href="#forbidden"><span class="dot"></span><span class="lab"><b>03</b> <span class="zh" lang="zh">故宫</span> Forbidden City</span></a></li><li><a href="#temple"><span class="dot"></span><span class="lab"><b>04</b> <span class="zh" lang="zh">天坛</span> Temple of Heaven</span></a></li><li><a href="#hutong"><span class="dot"></span><span class="lab"><b>05</b> <span class="zh" lang="zh">胡同</span> Hutongs</span></a></li><li><a href="#food"><span class="dot"></span><span class="lab"><b>06</b> <span class="zh" lang="zh">美食</span> Food</span></a></li><li><a href="#modern"><span class="dot"></span><span class="lab"><b>07</b> <span class="zh" lang="zh">现代</span> Modern Beijing</span></a></li><li><a href="#transit"><span class="dot"></span><span class="lab"><b>08</b> <span class="zh" lang="zh">交通</span> Transit</span></a></li><li><a href="#parks"><span class="dot"></span><span class="lab"><b>09</b> <span class="zh" lang="zh">公园</span> Parks and Hills</span></a></li><li><a href="#language"><span class="dot"></span><span class="lab"><b>10</b> <span class="zh" lang="zh">中文</span> Language</span></a></li><li><a href="#seasons"><span class="dot"></span><span class="lab"><b>11</b> <span class="zh" lang="zh">四季</span> Seasons and Festivals</span></a></li><li><a href="#itinerary"><span class="dot"></span><span class="lab"><b>12</b> <span class="zh" lang="zh">三日</span> Three Days</span></a></li></ol></nav>
+<header class="hero" id="top">
+  <div class="hl" aria-hidden="true"><img class="l-far" src="assets/01-hero.webp" alt="" fetchpriority="high"><img class="l-mid" src="assets/hero-mid.webp" alt=""><div class="mist m1"></div><img class="l-near" src="assets/hero-near.webp" alt=""><div class="mist m2"></div></div>
+  <div class="hwrap">
+    <p class="kick light">Chinese project-based learning</p>
+    <h1>Beijing sits <span>on one line.</span></h1>
+    <p class="sub">A straight road runs north to south through the middle of the city. Walk it and you meet almost everything worth seeing. Twelve anime teachers will show you the way.</p>
+    <div class="byline"><b>A. ANTONY BESCKI</b><span>Reg. No. RA2611026010076</span></div>
+    <a class="go" href="#intro">Start the walk <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16m0 0-6-6m6 6 6-6"/></svg></a>
+  </div>
+</header>
+<main id="main" tabindex="-1">
+
+<section class="ch" id="intro" data-i="0" style="--tc:#F2701D;--zoom:1" aria-labelledby="h-intro">
+  <div class="fly"><div class="stage s-r">
+    <div class="bg" aria-hidden="true"><img src="assets/01-hero.webp" alt="" style="object-position:62% 55%" loading="eager" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/goku.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>01</b> <span class="zh" lang="zh">欢迎</span> Welcome</p><h2 id="h-intro">Welcome to the northern capital</h2></header>
+    <div class="say-card"><p class="who"><b>Goku</b> <span class="zh" lang="zh">悟空老师</span></p><p class="line" data-text="I&#x27;m Goku. Beijing means northern capital, and about 22 million people live here. That is a lot of energy. Stay close and we will walk it together.">I&#x27;m Goku. Beijing means northern capital, and about 22 million people live here. That is a lot of energy. Stay close and we will walk it together.</p></div>
+  </div></div>
+  <div class="wrap body tp-stats"><div class="two"><div class="prose r"><p>Beijing <span class="zh" lang="zh">北京</span> (<i>Běijīng</i>) means northern capital. For most of the last eight centuries, emperors and governments ruled from here. You can see it: golden palace roofs, grey brick lanes and glass towers share one skyline.</p><p>Here is the trick this guide uses. A road called the Central Axis <span class="zh" lang="zh">中轴线</span> runs north to south through the middle of the city, about 7.8 km long. Almost every big sight sits on it, or close to it. So we will walk it, one stop at a time.</p></div><div class="statrow"><div class="stat r"><b data-n="22" data-s="M">22M</b><span>people</span></div><div class="stat r"><b data-n="3000" data-s="+">3,000+</b><span>years of history</span></div><div class="stat r"><b data-n="8" data-s="">8</b><span>UNESCO sites</span></div><div class="stat r"><b data-n="2" data-s="">2</b><span>Olympic Games</span></div></div></div><p class="note r">Beijing is the first city to host both the Summer (2008) and Winter (2022) Olympics.</p></div>
+</section>
+<section class="ch" id="wall" data-i="1" style="--tc:#F2A21D;--zoom:1.35" aria-labelledby="h-wall">
+  <div class="fly"><div class="stage s-l">
+    <div class="bg" aria-hidden="true"><img src="assets/01-hero.webp" alt="" style="object-position:30% 62%" loading="eager" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/naruto.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>02</b> <span class="zh" lang="zh">长城</span> Great Wall</p><h2 id="h-wall">The Great Wall, a dragon of stone</h2></header>
+    <div class="say-card"><p class="who"><b>Naruto</b> <span class="zh" lang="zh">鸣人老师</span></p><p class="line" data-text="Naruto here. The wall north of Beijing was rebuilt by the Ming dynasty. All the walls together reach 21,196 km. That is a long run, even with a thousand clones.">Naruto here. The wall north of Beijing was rebuilt by the Ming dynasty. All the walls together reach 21,196 km. That is a long run, even with a thousand clones.</p></div>
+  </div></div>
+  <div class="wrap body tp-cards"><p class="lead r">No trip to Beijing is complete without standing on the Great Wall. The parts north of the city were rebuilt in stone and brick by the Ming dynasty, and they snake along mountain ridges like a sleeping dragon. Pick the section that fits your mood.</p><div class="grid g3"><article class="card r"><h3>Badaling</h3><div class="zh">八达岭</div><p>The most famous and best restored. Easy to reach, but busy.</p></article><article class="card r"><h3>Mutianyu</h3><div class="zh">慕田峪</div><p>Fewer crowds and forest views. Ride a cable car up and a toboggan down.</p></article><article class="card r"><h3>Jinshanling</h3><div class="zh">金山岭</div><p>Wilder and quieter. The favourite of hikers and photographers.</p></article></div><aside class="fact r"><b>Did you know?</b><p>The old saying that you can see the wall from space is a myth. You cannot spot it with the naked eye.</p></aside></div>
+</section>
+<section class="ch" id="forbidden" data-i="2" style="--tc:#8A8D92;--zoom:1" aria-labelledby="h-forbidden">
+  <div class="fly"><div class="stage s-r">
+    <div class="bg" aria-hidden="true"><img src="assets/02-forbidden-city.webp" alt="" style="object-position:50% 50%" loading="lazy" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/thorfinn.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>03</b> <span class="zh" lang="zh">故宫</span> Forbidden City</p><h2 id="h-forbidden">Inside the Forbidden City</h2></header>
+    <div class="say-card"><p class="who"><b>Thorfinn</b> <span class="zh" lang="zh">托尔芬老师</span></p><p class="line" data-text="I am Thorfinn. Ordinary people were kept out of this palace for almost 500 years. Walk through it slowly. A good traveller does not need a sword, only patience.">I am Thorfinn. Ordinary people were kept out of this palace for almost 500 years. Walk through it slowly. A good traveller does not need a sword, only patience.</p></div>
+  </div></div>
+  <div class="wrap body tp-split"><div class="two"><div class="prose r"><p>Built between 1406 and 1420, this palace was home to 24 emperors of the Ming and Qing dynasties. Today it is the Palace Museum: about 980 buildings on 72 hectares, all lined up on the Central Axis.</p><aside class="fact r"><b>Colour code</b><p>Yellow roof tiles were only for the emperor. Red walls bring good luck. Legend says the palace has 9,999 and a half rooms, half a room fewer than heaven.</p></aside><p class="note r">Closed on Mondays. Book tickets online and bring your passport.</p></div><div><h3 class="sub r">The walking route</h3><ol class="steps"><li class="r"><b>Meridian Gate 午门</b><span>Enter from the south, as officials once did.</span></li><li class="r"><b>Hall of Supreme Harmony 太和殿</b><span>The biggest hall, where emperors were crowned.</span></li><li class="r"><b>Imperial Garden 御花园</b><span>Old cypress trees, rockeries and pavilions.</span></li><li class="r"><b>Jingshan Park 景山</b><span>Climb the hill behind for the famous rooftop view.</span></li></ol></div></div></div>
+</section>
+<section class="ch" id="temple" data-i="3" style="--tc:#7B6CFF;--zoom:1" aria-labelledby="h-temple">
+  <div class="fly"><div class="stage s-r">
+    <div class="bg" aria-hidden="true"><img src="assets/03-temple-of-heaven.webp" alt="" style="object-position:36% 50%" loading="lazy" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/gojo.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>04</b> <span class="zh" lang="zh">天坛</span> Temple of Heaven</p><h2 id="h-temple">Temple of Heaven and Summer Palace</h2></header>
+    <div class="say-card"><p class="who"><b>Gojo</b> <span class="zh" lang="zh">五条老师</span></p><p class="line" data-text="Yo, Gojo here. The Hall of Prayer was built without a single nail and it has stood for six hundred years. Almost as impressive as me. Almost.">Yo, Gojo here. The Hall of Prayer was built without a single nail and it has stood for six hundred years. Almost as impressive as me. Almost.</p></div>
+  </div></div>
+  <div class="wrap body tp-cards2"><div class="grid g2"><article class="card r"><h3>Temple of Heaven 天坛</h3><div class="zh">Tiāntán</div><p>Emperors came here every year to pray for a good harvest. The round Hall of Prayer rises 38 metres on three marble terraces and has no nails at all. Visit at sunrise, when locals practise tai chi, sing and play cards in the park.</p></article><article class="card r"><h3>Summer Palace 颐和园</h3><div class="zh">Yíhéyuán</div><p>The emperors escaped the summer heat here. Walk the Long Corridor, 728 metres of painted beams, cross the Seventeen-Arch Bridge and find the Marble Boat. In winter the lake freezes into a huge skating rink.</p></article></div><aside class="fact r"><b>Round and square</b><p>The halls are round and their bases square, because ancient China pictured heaven as round and the earth as square. Whisper at the Echo Wall and a friend far along it can hear you.</p></aside></div>
+</section>
+<section class="ch" id="hutong" data-i="4" style="--tc:#6B4A32;--zoom:1" aria-labelledby="h-hutong">
+  <div class="fly"><div class="stage s-l">
+    <div class="bg" aria-hidden="true"><img src="assets/04-hutong.webp" alt="" style="object-position:55% 50%" loading="lazy" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/aizen.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>05</b> <span class="zh" lang="zh">胡同</span> Hutongs</p><h2 id="h-hutong">Old Beijing, lane by lane</h2></header>
+    <div class="say-card"><p class="who"><b>Aizen</b> <span class="zh" lang="zh">蓝染老师</span></p><p class="line" data-text="I am Aizen. These lanes look simple. Every door hides a story, so look closely. Things are rarely what they seem.">I am Aizen. These lanes look simple. Every door hides a story, so look closely. Things are rarely what they seem.</p></div>
+  </div></div>
+  <div class="wrap body tp-split"><div class="two"><div class="prose r"><p>Step off the wide avenues into the hutongs <span class="zh" lang="zh">胡同</span>: narrow grey brick lanes lined with courtyard homes called <i>sìhéyuàn</i> <span class="zh" lang="zh">四合院</span>. Neighbours play chess on the doorstep and songbirds sing from cages in the trees.</p><p>Wander Nanluoguxiang <span class="zh" lang="zh">南锣鼓巷</span>, circle the lakes of Houhai <span class="zh" lang="zh">后海</span> and listen for the old Drum and Bell Towers.</p><aside class="fact r"><b>Local secret</b><p>Rent a bicycle or hop on a pedicab at dusk. When the lanterns come on and dinner smells drift out of every courtyard, the hutongs are at their best.</p></aside></div><div><h3 class="sub r">Before you go in</h3><ol class="steps"><li class="r"><b>Look at the doors</b><span>Stone drums, door studs and red couplets once showed a family's rank and wishes.</span></li><li class="r"><b>Remember these are homes</b><span>Keep your voice down and ask before you photograph people.</span></li><li class="r"><b>Catch a show</b><span>See Peking opera 京剧 (Jīngjù) or sip jasmine tea in a teahouse.</span></li></ol></div></div></div>
+</section>
+<section class="ch" id="food" data-i="5" style="--tc:#D62828;--zoom:1" aria-labelledby="h-food">
+  <div class="fly"><div class="stage s-l">
+    <div class="bg" aria-hidden="true"><img src="assets/05-food.webp" alt="" style="object-position:50% 60%" loading="lazy" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/luffy.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>06</b> <span class="zh" lang="zh">美食</span> Food</p><h2 id="h-food">The flavour of Beijing</h2></header>
+    <div class="say-card"><p class="who"><b>Luffy</b> <span class="zh" lang="zh">路飞老师</span></p><p class="line" data-text="I&#x27;m Luffy! I&#x27;m going to eat every dish in Beijing. Peking duck, noodles, dumplings, hot pot. Meat! Let&#x27;s eat!">I&#x27;m Luffy! I&#x27;m going to eat every dish in Beijing. Peking duck, noodles, dumplings, hot pot. Meat! Let&#x27;s eat!</p></div>
+  </div></div>
+  <div class="wrap body tp-tiles"><p class="lead r">Beijing cooking is hearty northern food: wheat instead of rice, roast meats, noodles and dumplings. Every dish tells a story about emperors and cold winters.</p><div class="grid g3"><article class="tile r"><div class="big zh" lang="zh">鸭</div><h3>Peking duck 北京烤鸭 <small>Běijīng kǎoyā</small></h3><p>Glossy roast duck carved at the table and wrapped in thin pancakes with spring onion and sweet bean sauce.</p></article><article class="tile r"><div class="big zh" lang="zh">面</div><h3>Zhajiang noodles 炸酱面 <small>zhájiàngmiàn</small></h3><p>Thick noodles tossed in a rich fried soybean paste with fresh cucumber. Beijing comfort food.</p></article><article class="tile r"><div class="big zh" lang="zh">饼</div><h3>Jianbing 煎饼 <small>jiānbing</small></h3><p>The breakfast of the city: a hot crêpe with egg, herbs, chilli sauce and a crunchy cracker.</p></article><article class="tile r"><div class="big zh" lang="zh">锅</div><h3>Mutton hotpot 涮羊肉 <small>shuàn yángròu</small></h3><p>Paper-thin lamb swished in a copper pot of bubbling broth. Perfect in winter.</p></article><article class="tile r"><div class="big zh" lang="zh">饺</div><h3>Dumplings 饺子 <small>jiǎozi</small></h3><p>Boiled parcels of meat and vegetables, eaten with vinegar. Families make them together at New Year.</p></article><article class="tile r"><div class="big zh" lang="zh">糖</div><h3>Tanghulu 糖葫芦 <small>tánghúlu</small></h3><p>Hawthorn berries on a stick, dipped in clear, crackling sugar.</p></article></div><aside class="fact r"><b>Table manners</b><p>Say <b class="zh" lang="zh">好吃!</b> (<i>hǎochī</i>, delicious) to make any cook smile. Never stand chopsticks upright in rice, because it looks like incense for the dead.</p></aside></div>
+</section>
+<section class="ch" id="modern" data-i="6" style="--tc:#1E9BE0;--zoom:1" aria-labelledby="h-modern">
+  <div class="fly"><div class="stage s-r">
+    <div class="bg" aria-hidden="true"><img src="assets/06-modern.webp" alt="" style="object-position:58% 40%" loading="lazy" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:0.9" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/doraemon.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>07</b> <span class="zh" lang="zh">现代</span> Modern Beijing</p><h2 id="h-modern">Tomorrow's capital</h2></header>
+    <div class="say-card"><p class="who"><b>Doraemon</b> <span class="zh" lang="zh">哆啦A梦老师</span></p><p class="line" data-text="I&#x27;m Doraemon, a robot cat from the future. Modern Beijing already looks like my century. Hold on tight.">I&#x27;m Doraemon, a robot cat from the future. Modern Beijing already looks like my century. Hold on tight.</p></div>
+  </div></div>
+  <div class="wrap body tp-cards"><p class="lead r">Beijing is not only old. Since the 2008 Olympics it has filled with daring buildings that stand right beside the old palaces.</p><div class="grid g3"><article class="card r"><h3>Bird's Nest 鸟巢</h3><div class="zh">National Stadium</div><p>The Olympic stadium wrapped in a tangle of steel twigs. Beautiful when lit at night.</p></article><article class="card r"><h3>Water Cube 水立方</h3><div class="zh">National Aquatics Centre</div><p>A swimming centre with a bubble skin. It became the Ice Cube for curling in 2022.</p></article><article class="card r"><h3>China Zun 中国尊</h3><div class="zh">528 metres</div><p>The tallest tower in the city. Its curved shape copies an ancient bronze wine vessel.</p></article><article class="card r"><h3>CCTV Headquarters 央视大楼</h3><div class="zh">The Big Pants</div><p>A folded loop of glass and steel that locals joke about.</p></article><article class="card r"><h3>798 Art District</h3><div class="zh">798艺术区</div><p>An old 1950s factory complex, now galleries, street art and cafés.</p></article><article class="card r"><h3>Daxing Airport 大兴机场</h3><div class="zh">Starfish shape</div><p>A huge starfish-shaped airport that opened in 2019.</p></article></div><aside class="fact r"><b>Night owl tip</b><p>Walk the Olympic Green after dark for a free light show, then head to Sanlitun <span class="zh" lang="zh">三里屯</span> for cafés and shopping.</p></aside></div>
+</section>
+<section class="ch" id="transit" data-i="7" style="--tc:#C0392B;--zoom:1.5" aria-labelledby="h-transit">
+  <div class="fly"><div class="stage s-l">
+    <div class="bg" aria-hidden="true"><img src="assets/06-modern.webp" alt="" style="object-position:78% 78%" loading="lazy" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:0.66" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/guts.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>08</b> <span class="zh" lang="zh">交通</span> Transit</p><h2 id="h-transit">Moving through the city</h2></header>
+    <div class="say-card"><p class="who"><b>Guts</b> <span class="zh" lang="zh">格斯老师</span></p><p class="line" data-text="I&#x27;m Guts. I have walked a long road carrying a heavy sword. In Beijing the subway carries you instead. Just keep moving forward.">I&#x27;m Guts. I have walked a long road carrying a heavy sword. In Beijing the subway carries you instead. Just keep moving forward.</p></div>
+  </div></div>
+  <div class="wrap body tp-stats2"><div class="two"><div class="prose r"><p>Getting around is part of the trip. The Beijing Subway <span class="zh" lang="zh">地铁</span> (<i>dìtiě</i>) is one of the biggest metro systems on Earth. Signs and announcements come in Chinese and English, and a ride costs a few yuan.</p><p>Above ground, join the river of bicycles. Shared bikes wait on every corner and the old city is flat. Leaving town? High-speed trains <span class="zh" lang="zh">高铁</span> reach Shanghai, 1,318 km away, in about four and a half hours.</p></div><div class="statrow"><div class="stat r"><b data-n="800" data-s="+">800+</b><span>km of subway track</span></div><div class="stat r"><b data-n="1318" data-s="">1,318</b><span>km to Shanghai by train</span></div><div class="stat r"><b data-n="2" data-s="">2</b><span>airports</span></div></div></div><aside class="fact r"><b>Traveller tip</b><p>Get a Yikatong <span class="zh" lang="zh">一卡通</span> transport card or set up a mobile payment app as soon as you land. One tap works on subways and buses across the whole city. Avoid 7 to 9 am and 5 to 7 pm if you can.</p></aside></div>
+</section>
+<section class="ch" id="parks" data-i="8" style="--tc:#3A8F6A;--zoom:1" aria-labelledby="h-parks">
+  <div class="fly"><div class="stage s-r">
+    <div class="bg" aria-hidden="true"><img src="assets/07-autumn-park.webp" alt="" style="object-position:62% 45%" loading="lazy" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/levi.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>09</b> <span class="zh" lang="zh">公园</span> Parks and Hills</p><h2 id="h-parks">Beyond the walls: parks, hills and tombs</h2></header>
+    <div class="say-card"><p class="who"><b>Levi</b> <span class="zh" lang="zh">利威尔老师</span></p><p class="line" data-text="Levi. Listen up. Beijing&#x27;s parks are clean, so keep them that way. Climb the hill, enjoy the view, and carry your rubbish out.">Levi. Listen up. Beijing&#x27;s parks are clean, so keep them that way. Climb the hill, enjoy the view, and carry your rubbish out.</p></div>
+  </div></div>
+  <div class="wrap body tp-tiles"><p class="lead r">When the city feels too big, do what Beijingers do and head for the trees. Imperial gardens and forested hills are a short subway or bus ride away.</p><div class="grid g4"><article class="tile r"><div class="big zh" lang="zh">香</div><h3>Fragrant Hills 香山 <small>Xiāngshān</small></h3><p>Hillsides that blaze red and gold with autumn leaves every October.</p></article><article class="tile r"><div class="big zh" lang="zh">海</div><h3>Beihai Park 北海公园 <small>Běihǎi</small></h3><p>A thousand-year-old imperial garden. Row a boat around the White Dagoba.</p></article><article class="tile r"><div class="big zh" lang="zh">陵</div><h3>Ming Tombs 十三陵 <small>Shísānlíng</small></h3><p>The valley where 13 Ming emperors rest, reached by a road of stone animals.</p></article><article class="tile r"><div class="big zh" lang="zh">景</div><h3>Jingshan Park 景山 <small>Jǐngshān</small></h3><p>A small hill with the best sunset view over the golden roofs of the Forbidden City.</p></article></div><div class="two"><div class="fact r"><b>Hiker's checklist</b><ul class="ticks"><li>Pack plenty of water, sun protection and snacks.</li><li>Check the weather and air quality before you set off.</li><li>Wear shoes with grip. Old steps are steep and uneven.</li><li>Carry your rubbish out and respect wildlife.</li></ul></div><blockquote class="quote r"><span class="brush zh" lang="zh">读万卷书，行万里路</span><span>Read ten thousand books, walk ten thousand miles.</span></blockquote></div></div>
+</section>
+<section class="ch" id="language" data-i="9" style="--tc:#F27EA8;--zoom:1" aria-labelledby="h-language">
+  <div class="fly"><div class="stage s-r">
+    <div class="bg" aria-hidden="true"><img src="assets/08-summer-palace.webp" alt="" style="object-position:20% 60%" loading="lazy" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/anya.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>10</b> <span class="zh" lang="zh">中文</span> Language</p><h2 id="h-language">Speak like a local</h2></header>
+    <div class="say-card"><p class="who"><b>Anya</b> <span class="zh" lang="zh">阿尼亚老师</span></p><p class="line" data-text="Anya likes Chinese! Anya will teach you. Say it with Anya: nǐ hǎo! Waku waku!">Anya likes Chinese! Anya will teach you. Say it with Anya: nǐ hǎo! Waku waku!</p></div>
+  </div></div>
+  <div class="wrap body tp-lang"><p class="lead r">Beijing is the home of standard Mandarin, <span class="zh" lang="zh">普通话</span> (<i>Pǔtōnghuà</i>). Even a few words earn big smiles. Read the pinyin aloud and watch the tone marks.</p><div class="grid g4"><div class="say r"><span class="zh" lang="zh">你好</span><i>Nǐ hǎo</i><span>Hello</span></div><div class="say r"><span class="zh" lang="zh">谢谢</span><i>Xièxie</i><span>Thank you</span></div><div class="say r"><span class="zh" lang="zh">请问…</span><i>Qǐngwèn…</i><span>Excuse me, may I ask…</span></div><div class="say r"><span class="zh" lang="zh">多少钱？</span><i>Duōshao qián?</i><span>How much is it?</span></div><div class="say r"><span class="zh" lang="zh">太贵了！</span><i>Tài guì le!</i><span>Too expensive!</span></div><div class="say r"><span class="zh" lang="zh">我要这个</span><i>Wǒ yào zhège</i><span>I would like this one</span></div><div class="say r"><span class="zh" lang="zh">地铁站在哪儿？</span><i>Dìtiězhàn zài nǎr?</i><span>Where is the subway station?</span></div><div class="say r"><span class="zh" lang="zh">厕所在哪儿？</span><i>Cèsuǒ zài nǎr?</i><span>Where is the toilet?</span></div><div class="say r"><span class="zh" lang="zh">不要辣</span><i>Bú yào là</i><span>Not spicy, please</span></div><div class="say r"><span class="zh" lang="zh">很好吃！</span><i>Hěn hǎochī!</i><span>Delicious!</span></div><div class="say r"><span class="zh" lang="zh">我听不懂</span><i>Wǒ tīng bu dǒng</i><span>I do not understand</span></div><div class="say r"><span class="zh" lang="zh">再见</span><i>Zàijiàn</i><span>Goodbye</span></div></div><h3 class="sub r">One sound, five meanings. Tap a tone.</h3><div class="tones r"><button type="button" class="tone" aria-label="mā, mother, high and level"><svg viewBox="0 0 120 64" aria-hidden="true"><path d="M4 8H116M4 32H116M4 56H116" class="grid-l"/><path d="M6 14 H114" class="tl" pathLength="1"/></svg><span class="zh" lang="zh">妈</span><i>mā</i><small>mother, high and level</small></button><button type="button" class="tone" aria-label="má, hemp, rising"><svg viewBox="0 0 120 64" aria-hidden="true"><path d="M4 8H116M4 32H116M4 56H116" class="grid-l"/><path d="M6 48 L114 12" class="tl" pathLength="1"/></svg><span class="zh" lang="zh">麻</span><i>má</i><small>hemp, rising</small></button><button type="button" class="tone" aria-label="mǎ, horse, dips then rises"><svg viewBox="0 0 120 64" aria-hidden="true"><path d="M4 8H116M4 32H116M4 56H116" class="grid-l"/><path d="M6 26 Q58 84 114 18" class="tl" pathLength="1"/></svg><span class="zh" lang="zh">马</span><i>mǎ</i><small>horse, dips then rises</small></button><button type="button" class="tone" aria-label="mà, to scold, falling fast"><svg viewBox="0 0 120 64" aria-hidden="true"><path d="M4 8H116M4 32H116M4 56H116" class="grid-l"/><path d="M6 10 L114 54" class="tl" pathLength="1"/></svg><span class="zh" lang="zh">骂</span><i>mà</i><small>to scold, falling fast</small></button><button type="button" class="tone" aria-label="ma, question word, light and short"><svg viewBox="0 0 120 64" aria-hidden="true"><path d="M4 8H116M4 32H116M4 56H116" class="grid-l"/><path d="M52 34 h16" class="tl" pathLength="1"/></svg><span class="zh" lang="zh">吗</span><i>ma</i><small>question word, light and short</small></button></div><aside class="fact r"><b>The Beijing r</b><p>Beijingers love to curl the end of words with an <b>r</b> sound, written <span class="zh" lang="zh">儿</span>. So <i>nǎlǐ</i> (where) becomes <b>nǎr</b>, and <i>yìdiǎn</i> (a little) becomes <b>yìdiǎnr</b>. Try it and you will sound like a local.</p></aside></div>
+</section>
+<section class="ch" id="seasons" data-i="10" style="--tc:#F2C230;--zoom:1.4" aria-labelledby="h-seasons">
+  <div class="fly"><div class="stage s-l">
+    <div class="bg" aria-hidden="true"><img src="assets/08-summer-palace.webp" alt="" style="object-position:78% 40%" loading="lazy" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/usagi.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>11</b> <span class="zh" lang="zh">四季</span> Seasons and Festivals</p><h2 id="h-seasons">When to go</h2></header>
+    <div class="say-card"><p class="who"><b>Usagi</b> <span class="zh" lang="zh">月野兔老师</span></p><p class="line" data-text="I&#x27;m Usagi! Beijing has four seasons and lots of festivals. In the name of the Moon, I will show you the best time to visit.">I&#x27;m Usagi! Beijing has four seasons and lots of festivals. In the name of the Moon, I will show you the best time to visit.</p></div>
+  </div></div>
+  <div class="wrap body tp-seasons"><p class="lead r">Beijing has four sharply different seasons, and each one changes the city. Whenever you come, there is a festival, a flavour and a view to match.</p><div class="grid g4"><article class="season r" style="--sc:#E58FB1"><div class="big zh" lang="zh">春</div><h3>Spring</h3><small>Mar to May</small><p>Blossom in the parks and mild, breezy days. Bring a light jacket.</p></article><article class="season r" style="--sc:#E0A21D"><div class="big zh" lang="zh">夏</div><h3>Summer</h3><small>Jun to Aug</small><p>Hot and humid with sudden rain. Start early and rest at midday.</p></article><article class="season r" style="--sc:#D9541E"><div class="big zh" lang="zh">秋</div><h3>Autumn</h3><small>Sep to Nov</small><p>Clear blue skies and red leaves. The best season to visit.</p></article><article class="season r" style="--sc:#4A9CCB"><div class="big zh" lang="zh">冬</div><h3>Winter</h3><small>Dec to Feb</small><p>Cold and dry. Fewer crowds, frozen lakes and hotpot weather.</p></article></div><div class="grid g2"><article class="card r"><h3><span class="zh" lang="zh">春节</span> Spring Festival</h3><div class="when">Jan or Feb</div><p>Chinese New Year. Temple fairs fill the parks with lion dances, snacks and red lanterns.</p></article><article class="card r"><h3><span class="zh" lang="zh">元宵节</span> Lantern Festival</h3><div class="when">15 days later</div><p>Glowing lantern displays and sweet rice balls end the New Year season.</p></article><article class="card r"><h3><span class="zh" lang="zh">中秋节</span> Mid-Autumn Festival</h3><div class="when">Sep or Oct</div><p>Families share mooncakes and watch the full moon over Beihai Park.</p></article><article class="card r"><h3><span class="zh" lang="zh">国庆节</span> National Day</h3><div class="when">1 October</div><p>Flowers and flags fill Tiananmen Square. Expect big holiday crowds all week.</p></article></div><aside class="fact r"><b>Best time to visit</b><p>September and October bring the famous Beijing autumn: dry air, golden ginkgo trees and deep blue skies. Skip the first week of October, when all of China is on holiday.</p></aside></div>
+</section>
+<section class="ch" id="itinerary" data-i="11" style="--tc:#5C9A5A;--zoom:1.5" aria-labelledby="h-itinerary">
+  <div class="fly"><div class="stage s-r">
+    <div class="bg" aria-hidden="true"><img src="assets/03-temple-of-heaven.webp" alt="" style="object-position:80% 45%" loading="lazy" decoding="async"></div>
+    <div class="shade" aria-hidden="true"></div>
+    <div class="teacher" style="--ts:0.86" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/totoro.webp" alt="" loading="lazy" decoding="async"></div>
+    <header class="hd"><p class="kick"><b>12</b> <span class="zh" lang="zh">三日</span> Three Days</p><h2 id="h-itinerary">Three perfect days</h2></header>
+    <div class="say-card"><p class="who"><b>Totoro</b> <span class="zh" lang="zh">龙猫老师</span></p><p class="line" data-text="Rrrooaaar. Three days. Slow steps. Big smiles. Follow Totoro.">Rrrooaaar. Three days. Slow steps. Big smiles. Follow Totoro.</p></div>
+  </div></div>
+  <div class="wrap body tp-days"><div class="days"><article class="day r"><div class="dh"><b>Day 1</b><span class="brush zh" lang="zh">帝都</span><small>The imperial heart</small></div><div class="db"><div><b>Morning</b><span>Tiananmen Square, then walk north through the Forbidden City.</span></div><div><b>Afternoon</b><span>Climb Jingshan Park for the rooftop view, then row a boat in Beihai Park.</span></div><div><b>Evening</b><span>Peking duck for dinner, then a stroll along Wangfujing.</span></div></div></article><article class="day r"><div class="dh"><b>Day 2</b><span class="brush zh" lang="zh">长城</span><small>The Great Wall</small></div><div class="db"><div><b>Morning</b><span>Start early for Mutianyu. Ride the cable car up and hike between the watchtowers.</span></div><div><b>Afternoon</b><span>Toboggan down, then stop at the Ming Tombs on the way back.</span></div><div><b>Evening</b><span>Warm up with mutton hotpot in a copper pot.</span></div></div></article><article class="day r"><div class="dh"><b>Day 3</b><span class="brush zh" lang="zh">胡同</span><small>Local life</small></div><div class="db"><div><b>Morning</b><span>Tai chi at sunrise in the Temple of Heaven park, then jianbing for breakfast.</span></div><div><b>Afternoon</b><span>A lakeside walk at the Summer Palace, or galleries at the 798 Art District.</span></div><div><b>Evening</b><span>Cycle the Houhai hutongs and watch the Bird's Nest glow at night.</span></div></div></article></div><div class="two end"><div class="checks r"><h3 class="sub">Final checklist</h3><label><input type="checkbox"><span></span>Passport and the right visa for China checked.</label><label><input type="checkbox"><span></span>Transport card or mobile payment app ready.</label><label><input type="checkbox"><span></span>Comfortable walking shoes packed.</label><label><input type="checkbox"><span></span>Forbidden City and Great Wall tickets booked.</label><label><input type="checkbox"><span></span>Translation and map apps saved for offline use.</label><label><input type="checkbox"><span></span>Layers for the season, plus water and sun protection.</label><label><input type="checkbox"><span></span>A few Mandarin phrases practised: 你好, 谢谢, 再见.</label><label><input type="checkbox"><span></span>Camera or phone charged.</label><div class="meter"><i></i></div><p class="mtxt" aria-live="polite">Tick everything to finish your mission.</p></div><div class="finale r"><div class="brush zh bon" lang="zh">一路平安</div><p>Yílù píng'ān. Have a safe journey. You are ready to see Beijing beyond the surface.</p><a class="cta" href="Exploring-Beijing-Travel-Guide.pdf" download>Download the PDF guide</a></div></div></div>
+</section>
+</main>
+<footer>
+  <p class="fb"><b>A. ANTONY BESCKI</b> · Reg. No. RA2611026010076 · Chinese project-based learning</p>
+  <p>Photos were made with Google Flow for this school project. Character artwork belongs to its original creators and studios and appears here only for non-commercial study.</p>
+</footer>
+<div class="chip" aria-hidden="true"><b>00</b><span>Start</span></div>
+<script>window.__CH=['intro', 'wall', 'forbidden', 'temple', 'hutong', 'food', 'modern', 'transit', 'parks', 'language', 'seasons', 'itinerary'];</script>
+<script>(function () {
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var clamp = function (v, a, b) { return Math.max(a, Math.min(b, v)); };
+  var root = document.documentElement, body = document.body, hero = document.querySelector('.hero');
+  var chs = Array.prototype.slice.call(document.querySelectorAll('.ch'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('.axis a'));
+  var N = chs.length, ids = window.__CH || [], axisTop = 0, mx = 0, tmx = 0;
+  var chipB = document.querySelector('.chip b'), chipS = document.querySelector('.chip span');
+  var typed = {};
+
+  /* place the twelve stops evenly along the axis */
+  links.forEach(function (a, i) { a.parentNode.style.top = ((i + .5) / N * 100) + '%'; });
+
+  /* typing effect for each teacher's line, once, when its card appears */
+  function typeLine(el) {
+    if (typed[el.id]) return; typed[el.id] = 1;
+    var full = el.getAttribute('data-text'); if (reduce) { el.textContent = full; return; }
+    var n = 0; el.classList.add('typing'); el.textContent = '';
+    (function tick() { n += 2; el.textContent = full.slice(0, n); if (n < full.length) setTimeout(tick, 22); else el.classList.remove('typing'); })();
+  }
+  document.querySelectorAll('.line').forEach(function (el, i) { el.id = 'ln' + i; if (!reduce) el.textContent = ''; });
+
+  var ticking = false, last = -1;
+  function frame() {
+    ticking = false;
+    var y = window.scrollY || 0, vh = innerHeight, h = root.scrollHeight - vh;
+    root.style.setProperty('--prog', h > 0 ? (y / h).toFixed(4) : 0);
+    if (!reduce && hero) {
+      var hp = clamp(y / (vh * .9), 0, 1.2); if (hp < 1.2) { hero.style.setProperty('--hp', hp.toFixed(4)); hero.style.setProperty('--hx', mx.toFixed(3)); }
+    }
+    var cur = -1, axisProg = 0;
+    for (var i = 0; i < N; i++) {
+      var c = chs[i], fly = c.querySelector('.fly'), r = fly.getBoundingClientRect();
+      if (r.top < vh * .5) cur = i;
+      var span = r.height - vh, p = clamp(-r.top / Math.max(1, span), 0, 1);
+      if (r.bottom > -vh && r.top < vh * 2) {
+        var st = c.querySelector('.stage');
+        if (!reduce) {
+          st.style.setProperty('--p', p.toFixed(4));
+          st.style.setProperty('--tin', clamp(1 - p / .12, 0, 1).toFixed(3));   /* teacher steps in */
+          st.style.setProperty('--hin', clamp(1 - (p - .04) / .12, 0, 1).toFixed(3));
+          st.style.setProperty('--sin', clamp(1 - (p - .14) / .12, 0, 1).toFixed(3));
+        }
+        if (p > .16) typeLine(c.querySelector('.line'));
+      }
+    }
+    /* axis fill follows the current chapter */
+    var done = cur < 0 ? 0 : cur + 1;
+    var frac = cur < 0 ? 0 : (function () { var r = chs[cur].getBoundingClientRect(); return clamp(-r.top / Math.max(1, r.height - vh), 0, 1); })();
+    axisProg = cur < 0 ? 0 : (cur + frac) / N + .5 / N;
+    root.style.setProperty('--axis', clamp(axisProg, 0, 1).toFixed(4));
+    if (cur !== last) {
+      last = cur; body.dataset.ch = cur;
+      links.forEach(function (a, i) { a.classList.toggle('on', i === cur); a.classList.toggle('done', i < cur); if (i === cur) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current'); });
+      if (chipB) { chipB.textContent = cur < 0 ? '00' : ('0' + (cur + 1)).slice(-2); chipS.textContent = cur < 0 ? 'Start' : (links[cur].querySelector('.lab').textContent.replace(/^\d+\s*/, '')); }
+    }
+  }
+  function req() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  addEventListener('scroll', req, { passive: true }); addEventListener('resize', req);
+  if (hero && !reduce) {
+    hero.addEventListener('pointermove', function (e) { if (e.pointerType !== 'mouse') return; tmx = (e.clientX / innerWidth - .5) * 2; });
+    (function ease() { mx += (tmx - mx) * .06; if (Math.abs(tmx - mx) > .001) req(); requestAnimationFrame(ease); })();
+  }
+  frame();
+
+  /* reveals and counters */
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return; e.target.classList.add('on'); io.unobserve(e.target);
+      var b = e.target.querySelector && e.target.querySelector('[data-n]');
+      if (b && !reduce) { var end = +b.dataset.n, s = b.dataset.s || '', t0 = null; (function f(ts) { if (!t0) t0 = ts; var k = Math.min(1, (ts - t0) / 1300); b.textContent = Math.round(end * (1 - Math.pow(1 - k, 3))).toLocaleString('en-US') + s; if (k < 1) requestAnimationFrame(f); })(performance.now()); }
+    });
+  }, { threshold: .12 });
+  document.querySelectorAll('.grid, .steps, .statrow, .days, .tones').forEach(function (g) { Array.prototype.forEach.call(g.children, function (c, i) { c.style.transitionDelay = (i * 60) + 'ms'; }); });
+  document.querySelectorAll('.r').forEach(function (el) { io.observe(el); });
+
+  /* tone buttons: draw the pitch line */
+  document.querySelectorAll('.tone').forEach(function (b) { b.addEventListener('click', function () { b.classList.remove('play'); void b.offsetWidth; b.classList.add('play'); }); });
+
+  /* checklist */
+  var boxes = document.querySelectorAll('.checks input'), meter = document.querySelector('.meter i'), mt = document.querySelector('.mtxt');
+  boxes.forEach(function (b) { b.addEventListener('change', function () { var n = document.querySelectorAll('.checks input:checked').length; meter.style.transform = 'scaleX(' + (n / boxes.length) + ')'; mt.textContent = n === boxes.length ? 'Mission ready. 一路平安!' : n + ' of ' + boxes.length + ' ready'; }); });
+
+  /* smooth in-page jumps land on the card moment of a chapter */
+  document.querySelectorAll('.axis a').forEach(function (a) { a.addEventListener('click', function (e) { var t = document.querySelector(a.getAttribute('href')); if (!t) return; e.preventDefault(); var f = t.querySelector('.fly'), y = f.getBoundingClientRect().top + scrollY + (f.offsetHeight - innerHeight) * .5; scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' }); }); });
+})();
+</script>
+</body>
+</html>
