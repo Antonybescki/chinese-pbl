@@ -141,7 +141,7 @@ main, .scenes { overflow-x: clip; }
   var hero = document.querySelector('.hero'), vid = document.querySelector('.vid'), load = document.querySelector('.load'), bands = document.querySelectorAll('.band');
 
   /* the five static-hero gates: phones and small screens, touch, reduced motion, data saver, slow connection. Kept live. */
-  var mqs = [matchMedia('(max-width: 767px)'), matchMedia('(pointer: coarse)'), matchMedia('(prefers-reduced-motion: reduce)')];
+  var mqs = [matchMedia('(max-width: 767px)'), matchMedia('(prefers-reduced-motion: reduce)')];   /* phones only: iPads and tablets get the video */
   function wantsStatic() { var c = navigator.connection || {}; return mqs.some(function (m) { return m.matches; }) || c.saveData || /2g/.test(c.effectiveType || ''); }
   var started = false, ready = false, dur = 0;
   function apply() { var s = wantsStatic(); hero.classList.toggle('static', s); if (s) { vid.classList.remove('ready'); } else { start(); if (ready) vid.classList.add('ready'); } }
