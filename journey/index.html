@@ -85,6 +85,12 @@ footer { padding: 36px 20px 60px; text-align: center; background: #080808; color
 main, .scenes { overflow-x: clip; }
 
 .vbtn { display: inline-flex; align-items: center; gap: 8px; margin: 18px 12px 0 0; min-height: 48px; padding: 0 22px 0 14px; border: 0; border-radius: 99px; background: #fff; color: #0C0C0C; font: 500 15px var(--k); cursor: pointer; vertical-align: top; } .vbtn svg { width: 20px; height: 20px; fill: currentColor; } .vbtn.playing { background: #E0B13A; } .vbtn:hover { transform: translateY(-2px); }
+
+canvas.vid, canvas.svid { display: block; } .hero.static canvas.vid { display: none; }
+
+.hear { display: grid; gap: 14px; justify-items: center; max-width: 720px; } .hear p { font: 500 13px var(--k); letter-spacing: .18em; text-transform: uppercase; color: var(--ink2); } .hear > div { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; } .hear .vbtn { margin: 0; } .hear .vbtn i { font-style: normal; opacity: .6; margin-left: 4px; }
+
+.row { backface-visibility: hidden; transform: translate3d(0, 0, 0); contain: layout paint; } .row img { content-visibility: auto; }
 </style>
 </head>
 <body>
@@ -94,7 +100,7 @@ main, .scenes { overflow-x: clip; }
 <section class="hero" id="top" aria-label="Beijing">
   <div class="stage">
     <img class="poster" src="assets/hero-poster.jpg" alt="" fetchpriority="high">
-    <video class="vid" muted playsinline preload="none" tabindex="-1" aria-hidden="true"></video>
+    <canvas class="vid" width="1024" height="538" aria-hidden="true"></canvas>
     <div class="scrim" aria-hidden="true"></div>
     <div class="load" aria-hidden="true"><i></i><span>0%</span></div>
     <nav class="nav" aria-label="Main"><a href="#about">About</a><a href="#chapters">Chapters</a><a href="#projects">Projects</a><a href="#contact">Download</a></nav>
@@ -106,16 +112,17 @@ main, .scenes { overflow-x: clip; }
 </section>
 
 <section class="marquee" aria-label="Photos of Beijing">
-  <div class="row" data-dir="1"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"><img src="../beijing/assets/02-forbidden-city.webp" alt="The Forbidden City at dusk" loading="lazy"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="The Temple of Heaven" loading="lazy"><img src="../beijing/assets/04-hutong.webp" alt="A hutong alley with red lanterns" loading="lazy"><img src="../beijing/assets/05-food.webp" alt="Peking duck being carved" loading="lazy"><img src="../beijing/assets/06-modern.webp" alt="The Beijing skyline at blue hour" loading="lazy"><img src="../beijing/assets/07-autumn-park.webp" alt="Autumn hills and a pagoda" loading="lazy"><img src="../beijing/assets/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" loading="lazy"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"><img src="../beijing/assets/02-forbidden-city.webp" alt="The Forbidden City at dusk" loading="lazy"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="The Temple of Heaven" loading="lazy"><img src="../beijing/assets/04-hutong.webp" alt="A hutong alley with red lanterns" loading="lazy"><img src="../beijing/assets/05-food.webp" alt="Peking duck being carved" loading="lazy"><img src="../beijing/assets/06-modern.webp" alt="The Beijing skyline at blue hour" loading="lazy"><img src="../beijing/assets/07-autumn-park.webp" alt="Autumn hills and a pagoda" loading="lazy"><img src="../beijing/assets/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" loading="lazy"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"><img src="../beijing/assets/02-forbidden-city.webp" alt="The Forbidden City at dusk" loading="lazy"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="The Temple of Heaven" loading="lazy"><img src="../beijing/assets/04-hutong.webp" alt="A hutong alley with red lanterns" loading="lazy"><img src="../beijing/assets/05-food.webp" alt="Peking duck being carved" loading="lazy"><img src="../beijing/assets/06-modern.webp" alt="The Beijing skyline at blue hour" loading="lazy"><img src="../beijing/assets/07-autumn-park.webp" alt="Autumn hills and a pagoda" loading="lazy"><img src="../beijing/assets/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" loading="lazy"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"><img src="../beijing/assets/02-forbidden-city.webp" alt="The Forbidden City at dusk" loading="lazy"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="The Temple of Heaven" loading="lazy"><img src="../beijing/assets/04-hutong.webp" alt="A hutong alley with red lanterns" loading="lazy"><img src="../beijing/assets/05-food.webp" alt="Peking duck being carved" loading="lazy"><img src="../beijing/assets/06-modern.webp" alt="The Beijing skyline at blue hour" loading="lazy"><img src="../beijing/assets/07-autumn-park.webp" alt="Autumn hills and a pagoda" loading="lazy"><img src="../beijing/assets/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" loading="lazy"><img src="../beijing/assets/01-hero.webp" alt="The Great Wall at sunrise" loading="lazy"></div>
-  <div class="row" data-dir="-1"><img src="../beijing/assets/04-hutong.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/05-food.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/06-modern.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/07-autumn-park.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/08-summer-palace.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/01-hero.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/02-forbidden-city.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/04-hutong.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/05-food.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/06-modern.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/07-autumn-park.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/08-summer-palace.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/01-hero.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/02-forbidden-city.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/04-hutong.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/05-food.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/06-modern.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/07-autumn-park.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/08-summer-palace.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/01-hero.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/02-forbidden-city.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/03-temple-of-heaven.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/04-hutong.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/05-food.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/06-modern.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/07-autumn-park.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/08-summer-palace.webp" alt="" loading="lazy" aria-hidden="true"><img src="../beijing/assets/01-hero.webp" alt="" loading="lazy" aria-hidden="true"></div>
+  <div class="row" data-dir="1"><img src="assets/thumbs/01-hero.webp" alt="The Great Wall at sunrise" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/02-forbidden-city.webp" alt="The Forbidden City at dusk" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/03-temple-of-heaven.webp" alt="The Temple of Heaven" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/04-hutong.webp" alt="A hutong alley with red lanterns" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/05-food.webp" alt="Peking duck being carved" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/06-modern.webp" alt="The Beijing skyline at blue hour" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/07-autumn-park.webp" alt="Autumn hills and a pagoda" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/01-hero.webp" alt="The Great Wall at sunrise" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/02-forbidden-city.webp" alt="The Forbidden City at dusk" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/03-temple-of-heaven.webp" alt="The Temple of Heaven" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/04-hutong.webp" alt="A hutong alley with red lanterns" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/05-food.webp" alt="Peking duck being carved" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/06-modern.webp" alt="The Beijing skyline at blue hour" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/07-autumn-park.webp" alt="Autumn hills and a pagoda" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/01-hero.webp" alt="The Great Wall at sunrise" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/02-forbidden-city.webp" alt="The Forbidden City at dusk" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/03-temple-of-heaven.webp" alt="The Temple of Heaven" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/04-hutong.webp" alt="A hutong alley with red lanterns" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/05-food.webp" alt="Peking duck being carved" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/06-modern.webp" alt="The Beijing skyline at blue hour" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/07-autumn-park.webp" alt="Autumn hills and a pagoda" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/08-summer-palace.webp" alt="The Summer Palace and Seventeen-Arch Bridge" width="420" height="270" loading="lazy" decoding="async"></div>
+  <div class="row" data-dir="-1"><img src="assets/thumbs/04-hutong.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/05-food.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/06-modern.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/07-autumn-park.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/08-summer-palace.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/01-hero.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/02-forbidden-city.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/03-temple-of-heaven.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/04-hutong.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/05-food.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/06-modern.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/07-autumn-park.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/08-summer-palace.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/01-hero.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/02-forbidden-city.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/03-temple-of-heaven.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/04-hutong.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/05-food.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/06-modern.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/07-autumn-park.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/08-summer-palace.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/01-hero.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/02-forbidden-city.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"><img src="assets/thumbs/03-temple-of-heaven.webp" alt="" aria-hidden="true" width="420" height="270" loading="lazy" decoding="async"></div>
 </section>
 
-<section class="scenes" aria-label="Two guided scenes"><div class="scene" data-v="assets/scene-forbidden.mp4" style="--sc:#E86A3A"><div class="sstage"><img class="sposter" src="assets/scene-forbidden.jpg" alt="Forbidden City" loading="lazy"><video class="svid" muted playsinline preload="none" tabindex="-1" aria-hidden="true"></video><div class="sscrim" aria-hidden="true"></div><div class="sload" aria-hidden="true"><i></i><span>0%</span></div><div class="scap"><p class="sk"><b>03</b> Forbidden City</p><h3 class="hero-heading">Walk the courtyard</h3><p>Lanterns glow, mist rolls over the stone, and the great hall waits at the end of the axis.</p><a class="sby" href="../beijing/#forbidden"><img src="../beijing/assets/teachers/thorfinn.webp" alt=""><span><i>Taught by</i><b>Thorfinn</b></span></a></div></div></div><div class="scene" data-v="assets/scene-temple.mp4" style="--sc:#E0B13A"><div class="sstage"><img class="sposter" src="assets/scene-temple.jpg" alt="Temple of Heaven" loading="lazy"><video class="svid" muted playsinline preload="none" tabindex="-1" aria-hidden="true"></video><div class="sscrim" aria-hidden="true"></div><div class="sload" aria-hidden="true"><i></i><span>0%</span></div><div class="scap"><p class="sk"><b>04</b> Temple of Heaven</p><h3 class="hero-heading">Circle the hall</h3><p>Golden ginkgo leaves drift past the round blue roof where emperors prayed for a good harvest.</p><button type="button" class="vbtn" data-v="../beijing/assets/voice/gojo.mp3" aria-label="Play Gojo: Hollow Purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Hollow Purple</span></button><a class="sby" href="../beijing/#temple"><img src="../beijing/assets/teachers/gojo.webp" alt=""><span><i>Taught by</i><b>Gojo</b></span></a></div></div></div></section>
+<section class="scenes" aria-label="Two guided scenes"><div class="scene" data-dir="assets/fr-forbidden/" data-n="118" style="--sc:#E86A3A"><div class="sstage"><img class="sposter" src="assets/scene-forbidden.jpg" alt="Forbidden City" loading="lazy"><canvas class="svid" width="960" height="504" aria-hidden="true"></canvas><div class="sscrim" aria-hidden="true"></div><div class="sload" aria-hidden="true"><i></i><span>0%</span></div><div class="scap"><p class="sk"><b>03</b> Forbidden City</p><h3 class="hero-heading">Walk the courtyard</h3><p>Lanterns glow, mist rolls over the stone, and the great hall waits at the end of the axis.</p><a class="sby" href="../beijing/#forbidden"><img src="../beijing/assets/teachers/thorfinn.webp" alt=""><span><i>Taught by</i><b>Thorfinn</b></span></a></div></div></div><div class="scene" data-dir="assets/fr-temple/" data-n="118" style="--sc:#E0B13A"><div class="sstage"><img class="sposter" src="assets/scene-temple.jpg" alt="Temple of Heaven" loading="lazy"><canvas class="svid" width="960" height="504" aria-hidden="true"></canvas><div class="sscrim" aria-hidden="true"></div><div class="sload" aria-hidden="true"><i></i><span>0%</span></div><div class="scap"><p class="sk"><b>04</b> Temple of Heaven</p><h3 class="hero-heading">Circle the hall</h3><p>Golden ginkgo leaves drift past the round blue roof where emperors prayed for a good harvest.</p><button type="button" class="vbtn" data-v="../beijing/assets/voice/gojo.mp3" aria-label="Play Gojo: Hollow Purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Hollow Purple</span></button><a class="sby" href="../beijing/#temple"><img src="../beijing/assets/teachers/gojo.webp" alt=""><span><i>Taught by</i><b>Gojo</b></span></a></div></div></div></section>
 
 <section class="about" id="about">
   <img class="deco d1" src="../beijing/assets/teachers/goku.webp" alt="" loading="lazy"><img class="deco d2" src="../beijing/assets/teachers/luffy.webp" alt="" loading="lazy"><img class="deco d3" src="../beijing/assets/teachers/naruto.webp" alt="" loading="lazy"><img class="deco d4" src="../beijing/assets/teachers/anya.webp" alt="" loading="lazy">
   <h2 class="hero-heading r">About this guide</h2>
   <p class="split" id="split" data-text="This is a Chinese project-based learning guide about Beijing. It walks the Central Axis, a straight road that runs north to south through the middle of the city, and every stop is taught by a different anime teacher. Read the chapters, learn a few phrases, and plan three perfect days.">This is a Chinese project-based learning guide about Beijing. It walks the Central Axis, a straight road that runs north to south through the middle of the city, and every stop is taught by a different anime teacher. Read the chapters, learn a few phrases, and plan three perfect days.</p>
+  <div class="hear r"><p>Tap a teacher to hear their voice</p><div><button type="button" class="vbtn" data-v="../beijing/assets/voice/goku.mp3" aria-label="Play Goku: Kamehameha"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Goku <i>Kamehameha</i></span></button><button type="button" class="vbtn" data-v="../beijing/assets/voice/naruto.mp3" aria-label="Play Naruto: Rasengan"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Naruto <i>Rasengan</i></span></button><button type="button" class="vbtn" data-v="../beijing/assets/voice/gojo.mp3" aria-label="Play Gojo: Hollow Purple"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Gojo <i>Hollow Purple</i></span></button><button type="button" class="vbtn" data-v="../beijing/assets/voice/aizen.mp3" aria-label="Play Aizen: Yōkoso"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Aizen <i>Yōkoso</i></span></button><button type="button" class="vbtn" data-v="../beijing/assets/voice/luffy.mp3" aria-label="Play Luffy: King of the Pirates"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><span>Luffy <i>King of the Pirates</i></span></button></div></div>
   <a class="btn magnet r" href="#chapters">Start the walk</a>
 </section>
 
@@ -145,39 +152,52 @@ main, .scenes { overflow-x: clip; }
   /* the five static-hero gates: phones and small screens, touch, reduced motion, data saver, slow connection. Kept live. */
   var mqs = [matchMedia('(max-width: 767px)'), matchMedia('(prefers-reduced-motion: reduce)')];   /* phones only: iPads and tablets get the video */
   function wantsStatic() { var c = navigator.connection || {}; return mqs.some(function (m) { return m.matches; }) || c.saveData || /2g/.test(c.effectiveType || ''); }
-  var started = false, ready = false, dur = 0;
-  function apply() { var s = wantsStatic(); hero.classList.toggle('static', s); if (s) { vid.classList.remove('ready'); } else { start(); if (ready) vid.classList.add('ready'); } }
-  mqs.forEach(function (m) { if (m.addEventListener) m.addEventListener('change', apply); });
-
-  /* fetch the video as a Blob behind an honest loading ring, so every seek is local and instant */
-  function start() {
-    if (started) return; started = true;
-    fetch('assets/hero-scrub.mp4').then(function (r) {
-      var total = +r.headers.get('content-length') || 0, got = 0, chunks = [], rd = r.body && r.body.getReader ? r.body.getReader() : null, txt = load.querySelector('span');
-      if (!rd) return r.blob();
-      return (function pump() { return rd.read().then(function (x) { if (x.done) return new Blob(chunks, { type: 'video/mp4' }); chunks.push(x.value); got += x.value.length; if (total) txt.textContent = Math.round(got / total * 100) + '%'; return pump(); }); })();
-    }).then(function (blob) {
-      vid.src = URL.createObjectURL(blob);
-      vid.addEventListener('loadedmetadata', function () { dur = vid.duration; ready = true; load.classList.add('done'); if (!hero.classList.contains('static')) vid.classList.add('ready'); loop(); }, { once: true });
-      vid.load();
-    }).catch(function () { load.classList.add('done'); });   /* page stays complete over the poster */
+  /* image-sequence scrubber: pictures instead of video seeking, which stays smooth on iPads and iPhones.
+     Frames load in order behind a loading ring; two neighbouring frames are blended so slow scrolling never steps. */
+  function Scrub(canvas, dir, count, onProgress, onReady) {
+    var imgs = [], loaded = 0, ctx = canvas.getContext('2d'), sized = false, startedLoad = false, shown = -1;
+    this.load = function () {
+      if (startedLoad) return; startedLoad = true;
+      for (var i = 0; i < count; i++) (function (i) {
+        var im = new Image(); im.decoding = 'async';
+        im.onload = function () { loaded++; imgs[i] = im; if (!sized) { sized = true; canvas.width = im.naturalWidth; canvas.height = im.naturalHeight; } if (onProgress) onProgress(loaded / count); if (loaded === Math.min(count, 12) && onReady) onReady(); };
+        im.onerror = function () { loaded++; };
+        im.src = dir + ('00' + (i + 1)).slice(-3) + '.webp';
+      })(i);
+    };
+    this.ready = function () { return sized && loaded >= Math.min(count, 12); };
+    this.draw = function (t) {
+      if (!sized) return; var pos = clamp(t, 0, 1) * (count - 1), i = Math.floor(pos), f = pos - i, key = Math.round(pos * 20);
+      if (key === shown) return; shown = key;
+      var a = near(i, -1), b = near(Math.min(count - 1, i + 1), 1);
+      if (a) ctx.drawImage(a, 0, 0, canvas.width, canvas.height);
+      if (b && b !== a && f > .02) { ctx.globalAlpha = f; ctx.drawImage(b, 0, 0, canvas.width, canvas.height); ctx.globalAlpha = 1; }
+    };
+    function near(i, d) { for (var k = i; k >= 0 && k < count; k += d) if (imgs[k]) return imgs[k]; for (k = i; k >= 0; k--) if (imgs[k]) return imgs[k]; return null; }
   }
 
-  /* scroll progress drives a lerped time, written only when it changes, and never while a seek is in flight */
-  var cur = 0, last = performance.now(), running = false, lastSet = -1;
+  var started = false, sc0 = null;
+  function apply() { var s = wantsStatic(); hero.classList.toggle('static', s); if (s) { vid.classList.remove('ready'); } else { start(); if (sc0 && sc0.ready()) vid.classList.add('ready'); } }
+  mqs.forEach(function (m) { if (m.addEventListener) m.addEventListener('change', apply); });
+  function start() {
+    if (started) return; started = true; var txt = load.querySelector('span');
+    sc0 = new Scrub(vid, 'assets/fr-hero/', 119, function (f) { txt.textContent = Math.round(f * 100) + '%'; if (f >= 1) load.classList.add('done'); }, function () { if (!hero.classList.contains('static')) vid.classList.add('ready'); sc0.draw(cur); loop(); });
+    sc0.load();
+  }
+
+  /* scroll progress drives an eased position; redrawn only when it changes */
+  var cur = 0, last = performance.now(), running = false;
   function prog() { var r = hero.getBoundingClientRect(), span = r.height - innerHeight; return clamp(-r.top / Math.max(1, span), 0, 1); }
   function loop() { if (running) return; running = true; last = performance.now(); requestAnimationFrame(tick); }
   function tick(now) {
     var p = prog(), dt = Math.min(.05, (now - last) / 1000); last = now;
     hero.style.setProperty('--p', p.toFixed(4));
-    var tgt = p * (dur || 0) * .985;
-    cur += (tgt - cur) * (1 - Math.exp(-dt * 9));
-    if (ready && !hero.classList.contains('static') && !vid.seeking && Math.abs(cur - lastSet) > .012) { vid.currentTime = cur; lastSet = cur; }
+    cur += (p - cur) * (1 - Math.exp(-dt * 8));
+    if (sc0 && sc0.ready() && !hero.classList.contains('static')) sc0.draw(cur);
     bands[0].classList.toggle('on', p > .3 && p < .56); bands[1].classList.toggle('on', p > .6 && p < .9);
-    if (Math.abs(tgt - cur) < .003 && !pending) { running = false; return; }
+    if (Math.abs(p - cur) < .0008) { cur = p; if (sc0 && sc0.ready()) sc0.draw(cur); running = false; return; }
     requestAnimationFrame(tick);
   }
-  var pending = false;
   addEventListener('scroll', function () { if (!reduce) loop(); }, { passive: true });
   addEventListener('resize', function () { if (!reduce) loop(); });
   apply();
@@ -217,31 +237,28 @@ main, .scenes { overflow-x: clip; }
   document.querySelectorAll('.r, .deco').forEach(function (el, i) { if (el.classList.contains('deco')) el.style.transitionDelay = ((i % 4) * .12) + 's'; io.observe(el); });
   document.querySelectorAll('.svc').forEach(function (el, i) { el.classList.add('r'); el.style.transitionDelay = '0s'; io.observe(el); });
 
-  /* two more scenes: same scroll-played video technique, loaded only when they get near */
+  /* two more scenes: the same image-sequence scrubber, loaded only when they get near */
   var scn = document.querySelector('.scenes');
-  function sceneStatic() { var s = wantsStatic(); if (scn) scn.classList.toggle('static', !!s); return s; }
+  function sceneStatic() { var st = wantsStatic(); if (scn) scn.classList.toggle('static', !!st); return st; }
   mqs.forEach(function (m) { if (m.addEventListener) m.addEventListener('change', sceneStatic); }); sceneStatic();
   document.querySelectorAll('.scene').forEach(function (sc) {
-    var v = sc.querySelector('.svid'), ld = sc.querySelector('.sload'), cap = sc.querySelector('.scap'), d = 0, ok = false, started2 = false, c2 = 0, l2 = performance.now(), run2 = false, set2 = -1;
+    var cv = sc.querySelector('.svid'), ld = sc.querySelector('.sload'), cap = sc.querySelector('.scap'), cur2 = 0, l2 = performance.now(), run2 = false, scr = null;
     function pr() { var r = sc.getBoundingClientRect(); return clamp(-r.top / Math.max(1, r.height - innerHeight), 0, 1); }
     function go() {
-      if (started2 || sceneStatic()) return; started2 = true;
-      fetch(sc.getAttribute('data-v')).then(function (r) {
-        var total = +r.headers.get('content-length') || 0, got = 0, chunks = [], rd = r.body && r.body.getReader ? r.body.getReader() : null, tx = ld.querySelector('span');
-        if (!rd) return r.blob();
-        return (function pump() { return rd.read().then(function (x) { if (x.done) return new Blob(chunks, { type: 'video/mp4' }); chunks.push(x.value); got += x.value.length; if (total) tx.textContent = Math.round(got / total * 100) + '%'; return pump(); }); })();
-      }).then(function (b) { v.src = URL.createObjectURL(b); v.addEventListener('loadedmetadata', function () { d = v.duration; ok = true; ld.classList.add('done'); v.classList.add('ready'); loop2(); }, { once: true }); v.load(); }).catch(function () { ld.classList.add('done'); });
+      if (scr || sceneStatic()) return; var tx = ld.querySelector('span');
+      scr = new Scrub(cv, sc.getAttribute('data-dir'), +sc.getAttribute('data-n'), function (f) { tx.textContent = Math.round(f * 100) + '%'; if (f >= 1) ld.classList.add('done'); }, function () { cv.classList.add('ready'); scr.draw(cur2); loop2(); });
+      scr.load();
     }
     function loop2() { if (run2) return; run2 = true; l2 = performance.now(); requestAnimationFrame(t2); }
     function t2(now) {
       var p = pr(), dt = Math.min(.05, (now - l2) / 1000); l2 = now;
       cap.style.setProperty('--cin', clamp((p - .08) / .18, 0, 1).toFixed(3));
-      var tg = p * d * .985; c2 += (tg - c2) * (1 - Math.exp(-dt * 9));
-      if (ok && !scn.classList.contains('static') && !v.seeking && Math.abs(c2 - set2) > .012) { v.currentTime = c2; set2 = c2; }
-      if (Math.abs(tg - c2) < .003) { run2 = false; return; } requestAnimationFrame(t2);
+      cur2 += (p - cur2) * (1 - Math.exp(-dt * 8));
+      if (scr && scr.ready() && !scn.classList.contains('static')) scr.draw(cur2);
+      if (Math.abs(p - cur2) < .0008) { cur2 = p; if (scr && scr.ready()) scr.draw(cur2); run2 = false; return; } requestAnimationFrame(t2);
     }
     new IntersectionObserver(function (es) { if (es[0].isIntersecting) go(); }, { rootMargin: '120% 0px' }).observe(sc);
-    addEventListener('scroll', function () { if (ok && !reduce) loop2(); else if (!ok) cap.style.setProperty('--cin', clamp((pr() - .08) / .18, 0, 1)); }, { passive: true });
+    addEventListener('scroll', function () { if (!reduce) loop2(); else cap.style.setProperty('--cin', 1); }, { passive: true });
   });
 
   var au = new Audio(), curB = null; au.preload = 'none';
