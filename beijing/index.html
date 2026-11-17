@@ -115,16 +115,6 @@ body[data-ch="-1"] .chip { opacity: 0; }
 
 .vbtn { display: inline-flex; align-items: center; gap: 8px; margin-top: 10px; min-height: 44px; padding: 0 18px 0 12px; border: 0; border-radius: 99px; background: var(--ink); color: #fff; font: 600 14px var(--body); cursor: pointer; transition: transform .2s var(--ease), background .2s; } .vbtn:hover { transform: translateY(-2px); background: #000; } .vbtn svg { width: 20px; height: 20px; fill: currentColor; } .vbtn.playing { background: var(--ac); } .vbtn.playing svg { animation: pulse2 .8s ease-in-out infinite alternate; } @keyframes pulse2 { to { transform: scale(1.25); } }
 .say-card { will-change: transform, opacity; } .stage .bg, .stage .teacher, .stage .hd, .stage .say-card { backface-visibility: hidden; }
-
-/* ambient life for every background: slow drift and a soft moving light; illustrated pictures also get a looping video on top */
-.bg img { animation: bgdrift 26s ease-in-out infinite alternate; transform-origin: 50% 50%; }
-@keyframes bgdrift { from { transform: scale(1.0) translate3d(-1.2%, 0, 0); } to { transform: scale(1.06) translate3d(1.2%, -.8%, 0); } }
-.bg::after { content: ""; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light; background: linear-gradient(105deg, transparent 30%, rgba(255, 236, 190, .5) 48%, transparent 66%); background-size: 260% 100%; animation: bgshine 14s ease-in-out infinite alternate; opacity: .55; }
-@keyframes bgshine { from { background-position: 100% 0; } to { background-position: 0 0; } }
-.bg.hasv::after { display: none; }
-.bg .bgv { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0; transition: opacity .9s ease; }
-.bg .bgv.on { opacity: 1; } .bg.hasv img { animation: none; }
-@media (max-width: 767px) { .bg .bgv { display: none; } .bg.hasv img { animation: bgdrift 26s ease-in-out infinite alternate; } }
 </style>
 </head>
 <body>
@@ -154,9 +144,9 @@ body[data-ch="-1"] .chip { opacity: 0; }
   </div></div>
   <div class="wrap body tp-stats"><div class="two"><div class="prose r"><p>Beijing <span class="zh" lang="zh">北京</span> (<i>Běijīng</i>) means northern capital. For most of the last eight centuries, emperors and governments ruled from here. You can see it: golden palace roofs, grey brick lanes and glass towers share one skyline.</p><p>Here is the trick this guide uses. A road called the Central Axis <span class="zh" lang="zh">中轴线</span> runs north to south through the middle of the city, about 7.8 km long. Almost every big sight sits on it, or close to it. So we will walk it, one stop at a time.</p></div><div class="statrow"><div class="stat r"><b data-n="22" data-s="M">22M</b><span>people</span></div><div class="stat r"><b data-n="3000" data-s="+">3,000+</b><span>years of history</span></div><div class="stat r"><b data-n="8" data-s="">8</b><span>UNESCO sites</span></div><div class="stat r"><b data-n="2" data-s="">2</b><span>Olympic Games</span></div></div></div><p class="note r">Beijing is the first city to host both the Summer (2008) and Winter (2022) Olympics.</p></div>
 </section>
-<section class="ch" id="wall" data-i="1" style="--tc:#F2A21D;--zoom:1.2" aria-labelledby="h-wall">
+<section class="ch" id="wall" data-i="1" style="--tc:#F2A21D;--zoom:1.35" aria-labelledby="h-wall">
   <div class="fly"><div class="stage s-l">
-    <div class="bg hasv" aria-hidden="true"><img src="assets/01b-great-wall.webp" alt="" style="object-position:50% 50%" loading="eager" decoding="async"><video class="bgv" data-src="assets/loops/wall.mp4" muted loop playsinline preload="none" tabindex="-1" style="object-position:50% 50%"></video></div>
+    <div class="bg" aria-hidden="true"><img src="assets/01-hero.webp" alt="" style="object-position:30% 62%" loading="eager" decoding="async"></div>
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/naruto.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>02</b> <span class="zh" lang="zh">长城</span> Great Wall</p><h2 id="h-wall">The Great Wall, a dragon of stone</h2></header>
@@ -166,7 +156,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
 </section>
 <section class="ch" id="forbidden" data-i="2" style="--tc:#8A8D92;--zoom:1" aria-labelledby="h-forbidden">
   <div class="fly"><div class="stage s-r">
-    <div class="bg hasv" aria-hidden="true"><img src="assets/02-forbidden-city.webp" alt="" style="object-position:50% 50%" loading="lazy" decoding="async"><video class="bgv" data-src="assets/loops/forbidden.mp4" muted loop playsinline preload="none" tabindex="-1" style="object-position:50% 50%"></video></div>
+    <div class="bg" aria-hidden="true"><img src="assets/02-forbidden-city.webp" alt="" style="object-position:50% 50%" loading="lazy" decoding="async"></div>
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/thorfinn.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>03</b> <span class="zh" lang="zh">故宫</span> Forbidden City</p><h2 id="h-forbidden">Inside the Forbidden City</h2></header>
@@ -176,7 +166,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
 </section>
 <section class="ch" id="temple" data-i="3" style="--tc:#7B6CFF;--zoom:1" aria-labelledby="h-temple">
   <div class="fly"><div class="stage s-r">
-    <div class="bg hasv" aria-hidden="true"><img src="assets/03-temple-of-heaven.webp" alt="" style="object-position:36% 50%" loading="lazy" decoding="async"><video class="bgv" data-src="assets/loops/temple.mp4" muted loop playsinline preload="none" tabindex="-1" style="object-position:36% 50%"></video></div>
+    <div class="bg" aria-hidden="true"><img src="assets/03-temple-of-heaven.webp" alt="" style="object-position:36% 50%" loading="lazy" decoding="async"></div>
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/gojo.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>04</b> <span class="zh" lang="zh">天坛</span> Temple of Heaven</p><h2 id="h-temple">Temple of Heaven and Summer Palace</h2></header>
@@ -186,7 +176,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
 </section>
 <section class="ch" id="hutong" data-i="4" style="--tc:#6B4A32;--zoom:1" aria-labelledby="h-hutong">
   <div class="fly"><div class="stage s-l">
-    <div class="bg hasv" aria-hidden="true"><img src="assets/04-hutong.webp" alt="" style="object-position:55% 50%" loading="lazy" decoding="async"><video class="bgv" data-src="assets/loops/hutong.mp4" muted loop playsinline preload="none" tabindex="-1" style="object-position:55% 50%"></video></div>
+    <div class="bg" aria-hidden="true"><img src="assets/04-hutong.webp" alt="" style="object-position:55% 50%" loading="lazy" decoding="async"></div>
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:1" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/aizen.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>05</b> <span class="zh" lang="zh">胡同</span> Hutongs</p><h2 id="h-hutong">Old Beijing, lane by lane</h2></header>
@@ -256,7 +246,7 @@ body[data-ch="-1"] .chip { opacity: 0; }
 </section>
 <section class="ch" id="itinerary" data-i="11" style="--tc:#5C9A5A;--zoom:1.5" aria-labelledby="h-itinerary">
   <div class="fly"><div class="stage s-r">
-    <div class="bg hasv" aria-hidden="true"><img src="assets/03-temple-of-heaven.webp" alt="" style="object-position:80% 45%" loading="lazy" decoding="async"><video class="bgv" data-src="assets/loops/temple.mp4" muted loop playsinline preload="none" tabindex="-1" style="object-position:80% 45%"></video></div>
+    <div class="bg" aria-hidden="true"><img src="assets/03-temple-of-heaven.webp" alt="" style="object-position:80% 45%" loading="lazy" decoding="async"></div>
     <div class="shade" aria-hidden="true"></div>
     <div class="teacher" style="--ts:0.86" aria-hidden="true"><i class="glow"></i><img src="assets/teachers/totoro.webp" alt="" loading="lazy" decoding="async"></div>
     <header class="hd"><p class="kick"><b>12</b> <span class="zh" lang="zh">三日</span> Three Days</p><h2 id="h-itinerary">Three perfect days</h2></header>
@@ -360,22 +350,6 @@ body[data-ch="-1"] .chip { opacity: 0; }
 
   /* smooth in-page jumps land on the card moment of a chapter */
   document.querySelectorAll('.axis a').forEach(function (a) { a.addEventListener('click', function (e) { var t = document.querySelector(a.getAttribute('href')); if (!t) return; e.preventDefault(); var f = t.querySelector('.fly'), y = f.getBoundingClientRect().top + scrollY + (f.offsetHeight - innerHeight) * .5; scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' }); }); });
-  /* looping picture videos: only the ones on screen play; phones, reduced motion and data saver keep the still picture */
-  (function () {
-    var conn = navigator.connection || {}, vids = document.querySelectorAll('.bgv');
-    if (!vids.length) return;
-    if (reduce || innerWidth < 768 || conn.saveData || /2g/.test(conn.effectiveType || '')) return;
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) {
-        var v = e.target;
-        if (e.isIntersecting) {
-          if (!v.src) v.src = v.getAttribute('data-src');
-          var p = v.play(); if (p && p.then) p.then(function () { v.classList.add('on'); }, function () {});
-        } else v.pause();
-      });
-    }, { rootMargin: '30% 0px' });
-    vids.forEach(function (v) { io.observe(v); });
-  })();
 })();
 
 (function () {
@@ -383,7 +357,6 @@ body[data-ch="-1"] .chip { opacity: 0; }
   function stop() { if (cur) cur.classList.remove('playing'); cur = null; }
   a.addEventListener('ended', stop);
   document.querySelectorAll('.vbtn').forEach(function (b) { b.addEventListener('click', function () { if (cur === b) { a.pause(); stop(); return; } stop(); a.src = b.getAttribute('data-v'); a.currentTime = 0; a.play().catch(function () {}); b.classList.add('playing'); cur = b; }); });
-
 })();
 </script>
 </body>
